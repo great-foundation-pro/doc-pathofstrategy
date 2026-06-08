@@ -1,0 +1,17 @@
+{
+  "name": "astrostarlight",
+  "version": "1.0.0",
+  "description": "Путь Стратегии — документация",
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev --port 5300 --host 127.0.0.1",
+    "build": "astro build",
+    "start": "astro preview --host 0.0.0.0 --port 4321",
+    "preview": "astro preview --host 0.0.0.0 --port 4321"
+  },
+  "dependencies": {
+    "@astrojs/starlight": "^0.39.3",
+    "astro": "^6.4.4",
+    "sharp": "^0.34.5"
+  }
+}
