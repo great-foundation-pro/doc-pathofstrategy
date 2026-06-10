@@ -6,6 +6,9 @@ import tailwindcss from '@tailwindcss/vite';
 import mdx from '@astrojs/mdx';
 import starlightLinksValidator from 'starlight-links-validator';
 import starlightBlog from 'starlight-blog';
+import starlightImageZoom from 'starlight-image-zoom';
+import starlightHeadingBadges from 'starlight-heading-badges';
+import starlightGiscus from 'starlight-giscus';
 
 import partytown from '@astrojs/partytown';
 
@@ -29,6 +32,14 @@ export default defineConfig({
             picture: '/favicon.svg'
           }
         }
+      }),
+      starlightImageZoom(),
+      starlightHeadingBadges(),
+      starlightGiscus({
+        repo: 'pathofstrategy/doc.pathofstrategy.com',
+        repoId: 'R_kgDOMabcdefg', // Замените на реальный repoId из настроек Giscus (giscus.app)
+        category: 'Announcements',
+        categoryId: 'DIC_kwDOMabcdefg', // Замените на реальный categoryId из настроек Giscus (giscus.app)
       }),
     ],
     customCss: [

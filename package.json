@@ -17,6 +17,9 @@
     "astro": "^6.4.4",
     "sharp": "^0.34.5",
     "starlight-blog": "^0.26.1",
+    "starlight-giscus": "^1.0.0",
+    "starlight-heading-badges": "^0.7.0",
+    "starlight-image-zoom": "^0.14.2",
     "starlight-links-validator": "^0.24.0",
     "tailwindcss": "^4.3.0"
   }
