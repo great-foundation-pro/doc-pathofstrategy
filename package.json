@@ -1,0 +1,26 @@
+{
+  "name": "astrostarlight",
+  "version": "1.0.0",
+  "description": "Путь Стратегии — документация",
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev --port 5300 --host 127.0.0.1",
+    "build": "astro build",
+    "start": "astro preview --host 0.0.0.0 --port 4321",
+    "preview": "astro preview --host 0.0.0.0 --port 4321"
+  },
+  "dependencies": {
+    "@astrojs/mdx": "^6.0.3",
+    "@astrojs/partytown": "^2.1.7",
+    "@astrojs/starlight": "^0.39.3",
+    "@tailwindcss/vite": "^4.3.0",
+    "astro": "^6.4.4",
+    "sharp": "^0.34.5",
+    "starlight-blog": "^0.26.1",
+    "starlight-giscus": "^1.0.0",
+    "starlight-heading-badges": "^0.7.0",
+    "starlight-image-zoom": "^0.14.2",
+    "starlight-links-validator": "^0.24.0",
+    "tailwindcss": "^4.3.0"
+  }
+}
