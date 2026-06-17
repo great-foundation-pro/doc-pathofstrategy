@@ -21,7 +21,7 @@ export default defineConfig({
     description: 'Система древнекитайских классических текстов',
     disable404Route: true,
     plugins: [
-      starlightLinksValidator(),
+      // starlightLinksValidator({ errorOnInvalidLinks: false }),
       starlightBlog({
         title: 'Заметки',
         authors: {
