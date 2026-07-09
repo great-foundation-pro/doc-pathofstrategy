@@ -36,10 +36,11 @@ export default defineConfig({
       starlightImageZoom(),
       starlightHeadingBadges(),
       starlightGiscus({
-        repo: 'pathofstrategy/doc.pathofstrategy.com',
-        repoId: 'R_kgDOMabcdefg', // Замените на реальный repoId из настроек Giscus (giscus.app)
-        category: 'Announcements',
-        categoryId: 'DIC_kwDOMabcdefg', // Замените на реальный categoryId из настроек Giscus (giscus.app)
+        repo: 'great-foundation-pro/doc-pathofstrategy',
+        repoId: 'R_kgDOS0ltZw',
+        category: 'General',
+        categoryId: 'DIC_kwDOS0ltZ84DA0lJ',
+        theme: { light: 'gruvbox_light', dark: 'gruvbox_light', auto: 'gruvbox_light' },
       }),
     ],
     customCss: [
@@ -48,6 +49,7 @@ export default defineConfig({
     head: [],
     components: {
       ThemeProvider: './src/components/ThemeProvider.astro',
+      ThemeSelect: './src/components/HeaderThemeSelect.astro',
     },
     defaultLocale: 'root',
     locales: {
@@ -593,6 +595,90 @@ export default defineConfig({
           { label: 'LVII. Колесницы в битве', link: '/texts/liu-tao/gl-57-колесницы-в-битве' },
           { label: 'LVIII. Конница в битве', link: '/texts/liu-tao/gl-58-конница-в-битве' },
           { label: 'LIX. Пешие воины в битве', link: '/texts/liu-tao/gl-59-пешие-воины-в-битве' },
+        ],
+      },
+      {
+        label: '10 крыльев',
+        collapsed: true,
+        items: [
+          { label: 'Обзор', link: '/texts/10-krylev' },
+        ],
+      },
+      {
+        label: 'Книга Песен',
+        collapsed: true,
+        items: [
+          { label: 'Обзор', link: '/texts/kniga-pesen' },
+        ],
+      },
+      {
+        label: 'Книга Преданий',
+        collapsed: true,
+        items: [
+          { label: 'Обзор', link: '/texts/kniga-predaniy' },
+        ],
+      },
+      {
+        label: 'Пять явлений',
+        collapsed: true,
+        items: [
+          { label: 'Обзор', link: '/texts/pyat-yavleniy' },
+        ],
+      },
+      {
+        label: 'Рождение Дао',
+        collapsed: true,
+        items: [
+          { label: 'Обзор', link: '/texts/rozhdenie-dao' },
+        ],
+      },
+      {
+        label: 'Обозначение Дао',
+        collapsed: true,
+        items: [
+          { label: 'Обзор', link: '/texts/oboznachenie-dao' },
+        ],
+      },
+      {
+        label: '9 Императоров',
+        collapsed: true,
+        items: [
+          { label: 'Обзор', link: '/texts/9-imperatorov' },
+        ],
+      },
+      {
+        label: 'Знак Инь Ян',
+        collapsed: true,
+        items: [
+          { label: 'Обзор', link: '/texts/znak-in-yan' },
+        ],
+      },
+      {
+        label: 'Компас Ло Пань',
+        collapsed: true,
+        items: [
+          { label: 'Обзор', link: '/texts/kompas-lo-pan' },
+        ],
+      },
+      {
+        label: 'Форма Основа',
+        collapsed: true,
+        items: [
+          { label: 'Обзор', link: '/texts/forma-osnova' },
+        ],
+      },
+      {
+        label: 'Игра Го',
+        collapsed: true,
+        items: [
+          { label: 'Обзор', link: '/texts/igra-go' },
+        ],
+      },
+      {
+        label: 'Игра И',
+        collapsed: true,
+        items: [
+          { label: 'Обзор', link: '/texts/igra-i' },
         ],
       },
     ],

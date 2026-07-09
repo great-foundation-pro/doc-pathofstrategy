@@ -1,0 +1,33 @@
+---
+// Расширяет ThemeSelect в шапке Starlight: добавляет ссылку "Библиотека"
+// рядом со ссылкой "Заметки", которую туда встраивает starlight-blog.
+import Default from '@astrojs/starlight/components/ThemeSelect.astro';
+import StarlightBlogThemeSelect from 'starlight-blog/components/ThemeSelect.astro';
+---
+
+<div class="sl-library-link">
+	<a href="/introduction/">Библиотека</a>
+</div>
+
+<StarlightBlogThemeSelect><slot /></StarlightBlogThemeSelect>
+<Default><slot /></Default>
+
+<style>
+	.sl-library-link {
+		border-inline-end: 1px solid var(--sl-color-gray-5);
+		display: none;
+		padding-inline-end: 1rem;
+	}
+
+	@media (min-width: 50rem) {
+		.sl-library-link {
+			display: flex;
+		}
+	}
+
+	.sl-library-link a {
+		color: var(--sl-color-text-accent);
+		font-weight: 600;
+		text-decoration: none;
+	}
+</style>

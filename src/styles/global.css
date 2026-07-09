@@ -3,6 +3,23 @@
 @source "../**/*.astro";
 @source "../**/*.md";
 
+/* Logo fonts (Chinese Calligraphy Style) — shared with custom.css for Starlight pages */
+@font-face {
+  font-family: 'Kashima';
+  src: url('/fonts/kashima-rus.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'DS China';
+  src: url('/fonts/ds-china.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 @theme {
   --font-serif: "Source Serif 4", Georgia, serif;
   --font-cormorant: "Cormorant Garamond", Georgia, serif;

@@ -12,20 +12,20 @@ import '../styles/global.css';
     <link rel="icon" href="/favicon.ico" sizes="32x32" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="/icon-192.png" />
-    <meta name="description" content="Полный свод древнекитайских классических трактатов об управлении, государстве и стратегии. 23 источника в структуре сезонов и центра (колодезная система 井)." />
+    <meta name="description" content="Полный свод древнекитайских классических трактатов об управлении, государстве и стратегии. 24 источника в структуре сезонов и центра (колодезная система 井)." />
     
     <!-- Open Graph / Facebook / Telegram -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://doc.pathofstrategy.com/" />
     <meta property="og:title" content="Путь стратегии · 战略之道 · Колодезная система 井" />
-    <meta property="og:description" content="Полный свод древнекитайских классических трактатов об управлении, государстве и стратегии. 23 источника в структуре сезонов и центра." />
+    <meta property="og:description" content="Полный свод древнекитайских классических трактатов об управлении, государстве и стратегии. 24 источника в структуре сезонов и центра." />
     <meta property="og:image" content="https://doc.pathofstrategy.com/images/hero-bg.webp" />
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:url" content="https://doc.pathofstrategy.com/" />
     <meta property="twitter:title" content="Путь стратегии · 战略之道 · Колодезная система 井" />
-    <meta property="twitter:description" content="Полный свод древнекитайских классических трактатов об управлении, государстве и стратегии. 23 источника в структуре сезонов и центра." />
+    <meta property="twitter:description" content="Полный свод древнекитайских классических трактатов об управлении, государстве и стратегии. 24 источника в структуре сезонов и центра." />
     <meta property="twitter:image" content="https://doc.pathofstrategy.com/images/hero-bg.webp" />
     
     <!-- External Scripts & Styles -->
@@ -67,21 +67,56 @@ import '../styles/global.css';
         <div class="mx-auto flex max-w-[88rem] h-20 items-center justify-between px-5 sm:px-8 lg:px-14 xl:px-20">
           <a href="#hero" class="flex items-center gap-3 group">
             <iconify-icon icon="mdi:yin-yang" class="text-3xl text-[#0A1F15] transition-transform duration-700 group-hover:rotate-180"></iconify-icon>
-            <span class="text-xl font-normal tracking-tight text-[#0A1F15] leading-none" style="font-family:'Cormorant Garamond',Georgia,serif;">
+            <span class="text-[2.5rem] font-normal tracking-tight text-[#0A1F15] leading-none" style="font-family:'Kashima','DS China','Cormorant Garamond',Georgia,serif;">
               Путь стратегии
             </span>
           </a>
-          <nav class="flex items-center gap-6 sm:gap-8 text-sm font-medium text-[#0A1F15]/75" style="font-family:'DM Sans',system-ui,sans-serif;">
-            <a href="/introduction/" class="hover:text-[#2D8B5E] transition">Введение</a>
+          <nav class="hidden md:flex items-center gap-6 sm:gap-8 text-sm font-medium text-[#0A1F15]/75" style="font-family:'DM Sans',system-ui,sans-serif;">
             <a href="/about/" class="hover:text-[#2D8B5E] transition">О проекте</a>
-            <a href="#library" class="hover:text-[#2D8B5E] transition">Библиотека</a>
-            <a href="/texts/sunzi/" class="hidden sm:inline-block hover:text-[#2D8B5E] transition">Сунь-Цзы</a>
-            <a href="/introduction/" class="flex h-10 items-center justify-center rounded-lg bg-[#0A1F15] px-4 text-xs font-semibold text-[#F4F0E6] hover:bg-[#123625] transition shadow-md">
-              Читать главы
+            <a href="/introduction/" class="hover:text-[#2D8B5E] transition">Библиотека</a>
+            <a href="/blog/" class="hover:text-[#2D8B5E] transition">Заметки</a>
+            <a href="https://github.com/great-foundation-pro/doc-pathofstrategy" target="_blank" rel="noopener noreferrer" class="flex items-center gap-1 hover:text-[#2D8B5E] transition" aria-label="GitHub">
+              <iconify-icon icon="mdi:github" class="text-lg"></iconify-icon>
+              <iconify-icon icon="mdi:open-in-new" class="text-xs"></iconify-icon>
+            </a>
+            <a href="https://pathofstrategy.com/" target="_blank" rel="noopener noreferrer" class="flex items-center hover:opacity-75 transition" aria-label="Путь стратегии">
+              <img src="/images/pathofstrategy-logo.png" alt="Путь стратегии" class="h-5 w-5" />
+            </a>
+            <a href="https://doc.pathofstrategy.com/blog/rss.xml" class="flex items-center hover:text-[#2D8B5E] transition" aria-label="RSS">
+              <iconify-icon icon="mdi:rss" class="text-lg"></iconify-icon>
+            </a>
+            <a href="https://pathofstrategy.com/community/" target="_blank" rel="noopener noreferrer" class="flex h-10 items-center justify-center rounded-lg bg-[#0A1F15] px-4 text-xs font-semibold text-[#F4F0E6] hover:bg-[#123625] transition shadow-md">
+              Войти в ворота
             </a>
           </nav>
+
+          <button id="mobileMenuButton" type="button" class="flex h-10 w-10 items-center justify-center rounded-lg text-[#0A1F15] transition hover:bg-black/5 md:hidden" aria-label="Открыть меню" aria-expanded="false" aria-controls="mobileMenu">
+            <iconify-icon id="mobileMenuIconOpen" icon="mdi:menu" class="text-2xl"></iconify-icon>
+            <iconify-icon id="mobileMenuIconClose" icon="mdi:close" class="hidden text-2xl"></iconify-icon>
+          </button>
+        </div>
+
+        <!-- Mobile dropdown menu -->
+        <div id="mobileMenu" class="absolute left-0 right-0 top-full z-50 hidden flex-col gap-1 border-t border-[#C49538]/20 bg-[#F4F0E6] px-5 py-5 shadow-[0_24px_60px_rgba(10,31,21,0.14)] md:hidden" style="font-family:'DM Sans',system-ui,sans-serif;">
+          <a href="/about/" class="rounded-lg px-3 py-3 text-base font-medium text-[#0A1F15]/80 transition hover:bg-[#2D8B5E]/10 hover:text-[#2D8B5E]">О проекте</a>
+          <a href="/introduction/" class="rounded-lg px-3 py-3 text-base font-medium text-[#0A1F15]/80 transition hover:bg-[#2D8B5E]/10 hover:text-[#2D8B5E]">Библиотека</a>
+          <a href="/blog/" class="rounded-lg px-3 py-3 text-base font-medium text-[#0A1F15]/80 transition hover:bg-[#2D8B5E]/10 hover:text-[#2D8B5E]">Заметки</a>
+          <a href="https://github.com/great-foundation-pro/doc-pathofstrategy" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 rounded-lg px-3 py-3 text-base font-medium text-[#0A1F15]/80 transition hover:bg-[#2D8B5E]/10 hover:text-[#2D8B5E]">
+            <iconify-icon icon="mdi:github" class="text-lg"></iconify-icon> GitHub
+            <iconify-icon icon="mdi:open-in-new" class="text-xs"></iconify-icon>
+          </a>
+          <a href="https://pathofstrategy.com/" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 rounded-lg px-3 py-3 text-base font-medium text-[#0A1F15]/80 transition hover:bg-[#2D8B5E]/10 hover:text-[#2D8B5E]">
+            <img src="/images/pathofstrategy-logo.png" alt="" class="h-5 w-5" /> Путь стратегии
+          </a>
+          <a href="https://doc.pathofstrategy.com/blog/rss.xml" class="flex items-center gap-2 rounded-lg px-3 py-3 text-base font-medium text-[#0A1F15]/80 transition hover:bg-[#2D8B5E]/10 hover:text-[#2D8B5E]">
+            <iconify-icon icon="mdi:rss" class="text-lg"></iconify-icon> RSS
+          </a>
+          <a href="https://pathofstrategy.com/community/" target="_blank" rel="noopener noreferrer" class="mt-2 flex h-12 items-center justify-center rounded-lg bg-[#0A1F15] px-4 text-sm font-semibold text-[#F4F0E6] shadow-md transition hover:bg-[#123625]">
+            Войти в ворота
+          </a>
         </div>
       </header>
+      <div id="mobileMenuBackdrop" class="fixed inset-x-0 bottom-0 top-20 z-40 hidden bg-[#0A1F15]/40 md:hidden"></div>
 
       <!-- HERO SECTION -->
       <section class="relative min-h-screen flex flex-col items-center justify-start overflow-hidden px-5 pb-20 pt-36 sm:pt-40 lg:px-10" id="hero">
@@ -99,7 +134,7 @@ import '../styles/global.css';
           <div class="inline-flex items-center gap-2.5 rounded-full border border-[#2D8B5E]/30 bg-[#F4F0E6]/85 px-4 py-1.5 shadow-sm backdrop-blur-md font-sans">
             <span class="h-[6px] w-[6px] rounded-full bg-[#E03030]"></span>
             <span class="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#2D8B5E] sm:text-[11px]">
-              ДОКУМЕНТАЦИОННЫЙ ПОРТАЛ · 23 ИСТОЧНИКА
+              ДОКУМЕНТАЦИОННЫЙ ПОРТАЛ
             </span>
           </div>
 
@@ -125,13 +160,13 @@ import '../styles/global.css';
             Единый код древних текстов — четыре сезона и центр — напрямую лежит
             в основе современных моделей управления, государства и бизнеса.
             <br class="hidden sm:block">
-            Полный свод из 23 источников, от 3000 до н.э. до династии Чжоу,
-            собран и описан здесь.
+            Свод источников, от 3000 до н.э. до династии Чжоу, собран и описан
+            здесь — библиотека растёт по мере находки и перевода новых текстов.
           </p>
 
           <!-- 6. Meta string (Мета-строка) -->
           <div class="mt-8 flex flex-wrap items-center justify-center gap-x-3 gap-y-2 text-xs text-[#0A1F15]/50 sm:mt-10 sm:text-sm font-sans animate-fade-up delay-450">
-            <span>23 источника</span>
+            <span id="metaSourceCount">23 источника</span>
             <span class="text-[#0A1F15]/25">·</span>
             <span>6 категорий</span>
             <span class="text-[#0A1F15]/25">·</span>
@@ -147,14 +182,14 @@ import '../styles/global.css';
 
           <!-- 7. Buttons -->
           <div class="mt-10 flex w-full flex-col items-center justify-center gap-4 sm:w-auto sm:flex-row sm:gap-5 font-sans animate-fade-up delay-450">
-            <a href="#library" class="group flex h-14 w-full items-center justify-center gap-3 rounded-xl bg-[#050C08] px-9 text-sm font-medium text-[#F4F0E6] shadow-[0_20px_50px_rgba(10,31,21,0.22)] transition hover:-translate-y-0.5 hover:bg-[#123625] sm:w-auto">
-              Войти в библиотеку  ↓
-            </a>
             <a href="#system" class="group flex h-14 w-full items-center justify-center gap-3 rounded-xl border border-[#C49538] bg-[#F4F0E6]/70 backdrop-blur-sm px-9 text-sm font-medium text-[#0A1F15] transition hover:-translate-y-0.5 hover:bg-[#F4F0E6]/90 sm:w-auto">
               Смотреть структуру
               <span class="text-xl leading-none text-[#C49538] font-notoserif">
                 井
               </span>
+            </a>
+            <a href="#library" class="group flex h-14 w-full items-center justify-center gap-3 rounded-xl bg-[#050C08] px-9 text-sm font-medium text-[#F4F0E6] shadow-[0_20px_50px_rgba(10,31,21,0.22)] transition hover:-translate-y-0.5 hover:bg-[#123625] sm:w-auto">
+              Войти в библиотеку  ↓
             </a>
           </div>
         </div>
@@ -178,87 +213,99 @@ import '../styles/global.css';
             </p>
             <div class="mt-9 grid grid-cols-1 gap-4 sm:grid-cols-3" style="font-family:'DM Sans',system-ui,sans-serif;">
               <div class="rounded-2xl border border-white/10 bg-white/[0.06] p-5">
-                <p class="text-3xl font-medium text-[#C49538]">23</p>
+                <p class="text-3xl font-medium text-[#C49538]">4</p>
                 <p class="mt-2 text-sm leading-6 text-[#F4F0E6]/62">
-                  источника корпуса
+                  четыре сезона года
                 </p>
               </div>
               <div class="rounded-2xl border border-white/10 bg-white/[0.06] p-5">
-                <p class="text-3xl font-medium text-[#08C8A8]">9</p>
+                <p class="text-3xl font-medium text-[#08C8A8]">1</p>
                 <p class="mt-2 text-sm leading-6 text-[#F4F0E6]/62">
-                  позиций решётки
+                  центр управления
                 </p>
               </div>
               <div class="rounded-2xl border border-white/10 bg-white/[0.06] p-5">
-                <p class="text-3xl font-medium text-[#E03030]">1</p>
+                <p class="text-3xl font-medium text-[#E03030]">5</p>
                 <p class="mt-2 text-sm leading-6 text-[#F4F0E6]/62">
-                  центр сборки
+                  пять — единая мера
                 </p>
               </div>
             </div>
           </div>
 
           <div class="rounded-[2rem] border border-white/12 bg-white/[0.06] p-5 shadow-[0_36px_110px_rgba(0,0,0,0.28)] backdrop-blur-xl">
-            <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
-              <article class="rounded-2xl border border-[#08C8A8]/25 bg-[#08C8A8]/10 p-5">
+            <!-- Крестообразная (井) сетка: 4 сезона по углам (заголовки — к внешним краям),
+                 "Сборка целого" — квадрат по центру стыка -->
+            <div class="relative grid grid-cols-1 gap-4 md:grid-cols-2 md:grid-rows-2">
+              <!-- Верхний левый: label -> заголовок -> текст, всё прижато к верхнему краю -->
+              <article class="order-4 flex h-full flex-col rounded-2xl border border-[#08C8A8]/25 bg-[#08C8A8]/10 p-5 md:order-1">
                 <p class="text-xs font-medium uppercase tracking-[0.18em] text-[#08C8A8]" style="font-family:'DM Sans',system-ui,sans-serif;">
                   Весна · Юго-Восток · 4
                 </p>
                 <h3 class="mt-4 text-3xl font-normal tracking-tight" style="font-family:'Cormorant Garamond',Georgia,serif;">
                   Запуск и рост
                 </h3>
-                <p class="mt-3 text-sm leading-6 text-[#F4F0E6]/68">
+                <p class="mt-3 text-sm leading-6 text-[#F4F0E6]/68 md:max-w-[68%]">
                   Образование формы, прорастание функции, начало управляемого
                   цикла.
                 </p>
               </article>
-              <article class="rounded-2xl border border-[#4488FF]/25 bg-[#4488FF]/10 p-5">
+              <!-- Верхний правый: та же логика, текст сужен к внешнему краю -->
+              <article class="order-1 flex h-full flex-col rounded-2xl border border-[#4488FF]/25 bg-[#4488FF]/10 p-5 md:order-2 md:items-end md:text-right">
                 <p class="text-xs font-medium uppercase tracking-[0.18em] text-[#4488FF]" style="font-family:'DM Sans',system-ui,sans-serif;">
                   Осень · Юго-Запад · 1
                 </p>
                 <h3 class="mt-4 text-3xl font-normal tracking-tight" style="font-family:'Cormorant Garamond',Georgia,serif;">
                   Закон и отсечение
                 </h3>
-                <p class="mt-3 text-sm leading-6 text-[#F4F0E6]/68">
+                <p class="mt-3 text-sm leading-6 text-[#F4F0E6]/68 md:max-w-[68%]">
                   Критерии, меры, границы ответственности и проверка результата.
                 </p>
               </article>
-              <article class="rounded-2xl border border-[#E07020]/25 bg-[#E07020]/10 p-5">
-                <p class="text-xs font-medium uppercase tracking-[0.18em] text-[#E07020]" style="font-family:'DM Sans',system-ui,sans-serif;">
-                  Лето · Северо-Восток · 2
-                </p>
-                <h3 class="mt-4 text-3xl font-normal tracking-tight" style="font-family:'Cormorant Garamond',Georgia,serif;">
-                  Действие и управление
-                </h3>
-                <p class="mt-3 text-sm leading-6 text-[#F4F0E6]/68">
-                  Администрирование, распределение усилий, вывод замысла в
-                  исполнение.
-                </p>
+              <!-- Нижний левый: текст и заголовок, затем label — всё прижато к нижнему краю -->
+              <article class="order-2 flex h-full flex-col rounded-2xl border border-[#E07020]/25 bg-[#E07020]/10 p-5 md:order-3">
+                <div class="mt-auto w-full pt-10">
+                  <p class="text-sm leading-6 text-[#F4F0E6]/68 md:max-w-[68%]">
+                    Администрирование, распределение усилий, вывод замысла в
+                    исполнение.
+                  </p>
+                  <h3 class="mt-3 text-3xl font-normal tracking-tight" style="font-family:'Cormorant Garamond',Georgia,serif;">
+                    Действие и управление
+                  </h3>
+                  <p class="mt-3 text-xs font-medium uppercase tracking-[0.18em] text-[#E07020]" style="font-family:'DM Sans',system-ui,sans-serif;">
+                    Лето · Северо-Восток · 2
+                  </p>
+                </div>
               </article>
-              <article class="rounded-2xl border border-[#B07838]/25 bg-[#B07838]/10 p-5">
-                <p class="text-xs font-medium uppercase tracking-[0.18em] text-[#B07838]" style="font-family:'DM Sans',system-ui,sans-serif;">
-                  Зима · Северо-Запад · 5
+              <!-- Нижний правый: та же логика, прижато к правому краю, цвет — зелёный -->
+              <article class="order-5 flex h-full flex-col rounded-2xl border border-[#2D8B5E]/25 bg-[#2D8B5E]/10 p-5 md:order-4 md:items-end md:text-right">
+                <div class="mt-auto w-full pt-10">
+                  <p class="text-sm leading-6 text-[#F4F0E6]/68 md:ml-auto md:max-w-[68%]">
+                    Инфраструктура, хранение, торговый обмен, сохранение опыта.
+                  </p>
+                  <h3 class="mt-3 text-3xl font-normal tracking-tight" style="font-family:'Cormorant Garamond',Georgia,serif;">
+                    Запас и передача
+                  </h3>
+                  <p class="mt-3 text-xs font-medium uppercase tracking-[0.18em] text-[#2D8B5E]" style="font-family:'DM Sans',system-ui,sans-serif;">
+                    Зима · Северо-Запад · 5
+                  </p>
+                </div>
+              </article>
+
+              <!-- Центр: настоящий квадрат (aspect-square), по центру стыка всех четырёх ячеек -->
+              <article class="order-3 relative mt-4 flex w-full flex-col items-center justify-center rounded-2xl border border-[#E03030]/30 bg-[#0A1F15] p-4 text-center shadow-[0_20px_60px_rgba(0,0,0,0.45)] md:absolute md:left-1/2 md:top-1/2 md:mt-0 md:aspect-square md:w-[30%] md:-translate-x-1/2 md:-translate-y-1/2 lg:w-[27%] z-10">
+                <p class="text-[11px] font-medium uppercase tracking-[0.14em] text-[#E03030]" style="font-family:'DM Sans',system-ui,sans-serif;">
+                  Центр · 3 · 金
                 </p>
-                <h3 class="mt-4 text-3xl font-normal tracking-tight" style="font-family:'Cormorant Garamond',Georgia,serif;">
-                  Запас и передача
+                <h3 class="mt-3 text-2xl font-normal tracking-tight lg:text-3xl" style="font-family:'Cormorant Garamond',Georgia,serif;">
+                  Сборка целого
                 </h3>
-                <p class="mt-3 text-sm leading-6 text-[#F4F0E6]/68">
-                  Инфраструктура, хранение, торговый обмен, сохранение опыта.
+                <p class="mx-auto mt-2 max-w-[18rem] text-xs leading-5 text-[#F4F0E6]/68">
+                  Центр фиксирует связь частей, удерживает учёт и переводит
+                  отдельные функции в одну систему.
                 </p>
               </article>
             </div>
-            <article class="mt-4 rounded-2xl border border-[#E03030]/25 bg-[#E03030]/10 p-5 text-center">
-              <p class="text-xs font-medium uppercase tracking-[0.18em] text-[#E03030]" style="font-family:'DM Sans',system-ui,sans-serif;">
-                Центр · 3 · 金
-              </p>
-              <h3 class="mt-4 text-4xl font-normal tracking-tight" style="font-family:'Cormorant Garamond',Georgia,serif;">
-                Сборка целого
-              </h3>
-              <p class="mx-auto mt-3 max-w-2xl text-sm leading-6 text-[#F4F0E6]/68">
-                Центр фиксирует связь частей, удерживает учёт и переводит
-                отдельные функции в одну систему.
-              </p>
-            </article>
           </div>
         </div>
       </section>
@@ -300,6 +347,75 @@ import '../styles/global.css';
         </div>
       </section>
 
+      <!-- NINE ZONES SECTION (井 3×3: девять местностей, восемь направлений, шесть управляющих) -->
+      <section id="canvas" class="relative min-h-screen overflow-hidden bg-[#08160F] px-5 py-24 text-[#FAF7F0] sm:px-8 lg:px-10 flex items-center justify-center">
+        <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_22%_25%,rgba(196,149,56,0.12),transparent_30rem),radial-gradient(circle_at_82%_70%,rgba(45,139,94,0.16),transparent_32rem)]"></div>
+        <div class="relative mx-auto grid max-w-[83rem] grid-cols-1 gap-12 lg:grid-cols-[1.08fr_0.92fr] lg:items-center lg:gap-16">
+
+          <div class="lg:order-1">
+            <div class="rounded-[1.75rem] border border-[#C49538]/20 bg-white/[0.04] p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] backdrop-blur-sm sm:p-3 md:p-5">
+              <div class="grid grid-cols-1 gap-4 sm:grid-cols-3" id="baguaGrid">
+
+                <div class="bagua-cell relative flex min-h-40 flex-col rounded-2xl border border-[#A78BFA]/30 bg-[#0A1F15]/80 p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)]"><div class="flex items-center justify-between gap-3"><span class="text-xs font-medium text-[#FAF7F0]/50" style="font-family:'DM Sans',system-ui,sans-serif;">☳ Гром</span><div class="flex shrink-0 items-center gap-1.5"><span class="text-[10px] font-medium uppercase tracking-[0.08em] text-[#FAF7F0]/55" style="font-family:'DM Sans',system-ui,sans-serif;">Лето</span><span class="h-3 w-3 rounded-full bg-[#A78BFA] shadow-[0_0_16px_rgba(167,139,250,0.6)]"></span></div></div><p class="mt-3 text-[1.2rem] lg:text-2xl font-bold leading-none tracking-tight text-[#FAF7F0]" style="font-family:'Cormorant Garamond',Georgia,serif;">Маркетинг</p><p class="mt-7 text-lg leading-8 text-[#FAF7F0]/70">Связи с общественностью и медиа</p><div class="mt-auto flex w-full items-baseline justify-between gap-2"><p class="text-[17px] font-medium text-[#C49538]" style="font-family:'DM Sans',system-ui,sans-serif;">Принцип 6</p><p class="text-[0.625rem] sm:text-[0.9375rem] md:text-4xl font-light leading-none text-[#C49538]" style="font-family:'DM Sans',system-ui,sans-serif;">9</p></div></div>
+
+                <div class="bagua-cell relative flex min-h-40 flex-col rounded-2xl border border-[#67E8F9]/30 bg-[#0A1F15]/80 p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)]"><div class="flex items-center justify-between gap-3"><span class="text-xs font-medium text-[#FAF7F0]/50" style="font-family:'DM Sans',system-ui,sans-serif;">☱ Озеро</span><div class="flex shrink-0 items-center gap-1.5"><span class="text-[10px] font-medium uppercase tracking-[0.08em] text-[#FAF7F0]/55" style="font-family:'DM Sans',system-ui,sans-serif;">Весна</span><span class="h-3 w-3 rounded-full bg-[#67E8F9] shadow-[0_0_16px_rgba(103,232,249,0.6)]"></span></div></div><p class="mt-3 text-[1.2rem] lg:text-2xl font-bold leading-none tracking-tight text-[#FAF7F0]" style="font-family:'Cormorant Garamond',Georgia,serif;">Продажи</p><p class="mt-7 text-lg leading-8 text-[#FAF7F0]/70">Презентация и питчинг аудитории</p><div class="mt-auto flex w-full items-baseline justify-between gap-2"><p class="text-[17px] font-medium text-[#C49538]" style="font-family:'DM Sans',system-ui,sans-serif;">Принцип 2</p><p class="text-[0.625rem] sm:text-[0.9375rem] md:text-4xl font-light leading-none text-[#C49538]" style="font-family:'DM Sans',system-ui,sans-serif;">6</p></div></div>
+
+                <div class="bagua-cell relative flex min-h-40 flex-col rounded-2xl border border-[#38BDF8]/30 bg-[#0A1F15]/80 p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)]"><div class="flex items-center justify-between gap-3"><span class="text-xs font-medium text-[#FAF7F0]/50" style="font-family:'DM Sans',system-ui,sans-serif;">☰ Небо</span><div class="flex shrink-0 items-center gap-1.5"><span class="text-[10px] font-medium uppercase tracking-[0.08em] text-[#FAF7F0]/55" style="font-family:'DM Sans',system-ui,sans-serif;">Весна</span><span class="h-3 w-3 rounded-full bg-[#38BDF8] shadow-[0_0_16px_rgba(56,189,248,0.6)]"></span></div></div><p class="mt-3 text-[1.2rem] lg:text-2xl font-bold leading-none tracking-tight text-[#FAF7F0]" style="font-family:'Cormorant Garamond',Georgia,serif;">Аналитика</p><p class="mt-7 text-lg leading-8 text-[#FAF7F0]/70">Метрики и базы данных</p><div class="mt-auto flex w-full items-baseline justify-between gap-2"><p class="text-[17px] font-medium text-[#C49538]" style="font-family:'DM Sans',system-ui,sans-serif;">Принцип 4</p><p class="text-[0.625rem] sm:text-[0.9375rem] md:text-4xl font-light leading-none text-[#C49538]" style="font-family:'DM Sans',system-ui,sans-serif;">1</p></div></div>
+
+                <div class="bagua-cell relative flex min-h-40 flex-col rounded-2xl border border-[#F97316]/25 bg-[#0A1F15]/80 p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)]"><div class="flex items-center justify-between gap-3"><span class="text-xs font-medium text-[#FAF7F0]/50" style="font-family:'DM Sans',system-ui,sans-serif;">☲ Огонь</span><div class="flex shrink-0 items-center gap-1.5"><span class="text-[10px] font-medium uppercase tracking-[0.08em] text-[#FAF7F0]/55" style="font-family:'DM Sans',system-ui,sans-serif;">Лето</span><span class="h-3 w-3 rounded-full bg-[#F97316] shadow-[0_0_16px_rgba(249,115,22,0.6)]"></span></div></div><p class="mt-3 text-[1.2rem] lg:text-2xl font-bold leading-none tracking-tight text-[#FAF7F0]" style="font-family:'Cormorant Garamond',Georgia,serif;">Администрация</p><p class="mt-7 text-lg leading-8 text-[#FAF7F0]/70">Документооборот, кадры и учёт</p><div class="mt-auto flex w-full items-baseline justify-between gap-2"><p class="text-[17px] font-medium text-[#C49538]" style="font-family:'DM Sans',system-ui,sans-serif;">Принцип 8</p><p class="text-[0.625rem] sm:text-[0.9375rem] md:text-4xl font-light leading-none text-[#C49538]" style="font-family:'DM Sans',system-ui,sans-serif;">4</p></div></div>
+
+                <div class="bagua-cell relative flex min-h-40 flex-col rounded-2xl border border-[#E05A4F]/35 bg-[#0A1F15]/80 p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)]"><div class="flex items-center justify-end gap-3"><span class="h-3 w-3 shrink-0 rounded-full bg-[#E05A4F] shadow-[0_0_16px_rgba(224,90,79,0.6)]"></span></div><p class="mt-3 text-[1.2rem] lg:text-2xl font-bold leading-none tracking-tight text-[#FF9D8F]" style="font-family:'Cormorant Garamond',Georgia,serif;">Партнерство</p><p class="mt-7 text-lg leading-8 text-[#FAF7F0]/70">Внешние интеграции и связи</p><div class="mt-auto flex w-full items-baseline justify-between gap-2"><p class="text-[17px] font-medium text-[#C49538]" style="font-family:'DM Sans',system-ui,sans-serif;">При-пы 1 и 3</p><p class="text-[0.625rem] sm:text-[0.9375rem] md:text-4xl font-light leading-none text-[#C49538]" style="font-family:'DM Sans',system-ui,sans-serif;">5</p></div></div>
+
+                <div class="bagua-cell relative flex min-h-40 flex-col rounded-2xl border border-[#2563EB]/30 bg-[#0A1F15]/80 p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)]"><div class="flex items-center justify-between gap-3"><span class="text-xs font-medium text-[#FAF7F0]/50" style="font-family:'DM Sans',system-ui,sans-serif;">☵ Вода</span><div class="flex shrink-0 items-center gap-1.5"><span class="text-[10px] font-medium uppercase tracking-[0.08em] text-[#FAF7F0]/55" style="font-family:'DM Sans',system-ui,sans-serif;">Осень</span><span class="h-3 w-3 rounded-full bg-[#2563EB] shadow-[0_0_16px_rgba(37,99,235,0.6)]"></span></div></div><p class="mt-3 text-[1.2rem] lg:text-2xl font-bold leading-none tracking-tight text-[#FAF7F0]" style="font-family:'Cormorant Garamond',Georgia,serif;">Управление</p><p class="mt-7 text-lg leading-8 text-[#FAF7F0]/70">Координация процессов</p><div class="mt-auto flex w-full items-baseline justify-between gap-2"><p class="text-[17px] font-medium text-[#C49538]" style="font-family:'DM Sans',system-ui,sans-serif;">Принцип 5</p><p class="text-[0.625rem] sm:text-[0.9375rem] md:text-4xl font-light leading-none text-[#C49538]" style="font-family:'DM Sans',system-ui,sans-serif;">3</p></div></div>
+
+                <div class="bagua-cell relative flex min-h-40 flex-col rounded-2xl border border-[#C49538]/30 bg-[#0A1F15]/80 p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)]"><div class="flex items-center justify-between gap-3"><span class="text-xs font-medium text-[#FAF7F0]/50" style="font-family:'DM Sans',system-ui,sans-serif;">☷ Земля</span><div class="flex shrink-0 items-center gap-1.5"><span class="text-[10px] font-medium uppercase tracking-[0.08em] text-[#FAF7F0]/55" style="font-family:'DM Sans',system-ui,sans-serif;">Зима</span><span class="h-3 w-3 rounded-full bg-[#C49538] shadow-[0_0_16px_rgba(196,149,56,0.6)]"></span></div></div><p class="mt-3 text-[1.2rem] lg:text-2xl font-bold leading-none tracking-tight text-[#FAF7F0]" style="font-family:'Cormorant Garamond',Georgia,serif;">Обучение</p><p class="mt-7 text-lg leading-8 text-[#FAF7F0]/70">Развитие команды и компетенций</p><div class="mt-auto flex w-full items-baseline justify-between gap-2"><p class="text-[17px] font-medium text-[#C49538]" style="font-family:'DM Sans',system-ui,sans-serif;">Принцип 10</p><p class="text-[0.625rem] sm:text-[0.9375rem] md:text-4xl font-light leading-none text-[#C49538]" style="font-family:'DM Sans',system-ui,sans-serif;">2</p></div></div>
+
+                <div class="bagua-cell relative flex min-h-40 flex-col rounded-2xl border border-[#22C55E]/25 bg-[#0A1F15]/80 p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)]"><div class="flex items-center justify-between gap-3"><span class="text-xs font-medium text-[#FAF7F0]/50" style="font-family:'DM Sans',system-ui,sans-serif;">☶ Гора</span><div class="flex shrink-0 items-center gap-1.5"><span class="text-[10px] font-medium uppercase tracking-[0.08em] text-[#FAF7F0]/55" style="font-family:'DM Sans',system-ui,sans-serif;">Зима</span><span class="h-3 w-3 rounded-full bg-[#22C55E] shadow-[0_0_16px_rgba(34,197,94,0.6)]"></span></div></div><p class="mt-3 text-[1.2rem] lg:text-2xl font-bold leading-none tracking-tight text-[#FAF7F0]" style="font-family:'Cormorant Garamond',Georgia,serif;">Каналы продаж</p><p class="mt-7 text-lg leading-8 text-[#FAF7F0]/70">Точки продаж и дистрибуция</p><div class="mt-auto flex w-full items-baseline justify-between gap-2"><p class="text-[17px] font-medium text-[#C49538]" style="font-family:'DM Sans',system-ui,sans-serif;">Принцип 7</p><p class="text-[0.625rem] sm:text-[0.9375rem] md:text-4xl font-light leading-none text-[#C49538]" style="font-family:'DM Sans',system-ui,sans-serif;">7</p></div></div>
+
+                <div class="bagua-cell relative flex min-h-40 flex-col rounded-2xl border border-[#9CA3AF]/30 bg-[#0A1F15]/80 p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)]"><div class="flex items-center justify-between gap-3"><span class="text-xs font-medium text-[#FAF7F0]/50" style="font-family:'DM Sans',system-ui,sans-serif;">☴ Ветер</span><div class="flex shrink-0 items-center gap-1.5"><span class="text-[10px] font-medium uppercase tracking-[0.08em] text-[#FAF7F0]/55" style="font-family:'DM Sans',system-ui,sans-serif;">Осень</span><span class="h-3 w-3 rounded-full bg-[#9CA3AF] shadow-[0_0_16px_rgba(156,163,175,0.55)]"></span></div></div><p class="mt-3 text-[1.2rem] lg:text-2xl font-bold leading-none tracking-tight text-[#FAF7F0]" style="font-family:'Cormorant Garamond',Georgia,serif;">Бизнес-модель</p><p class="mt-7 text-lg leading-8 text-[#FAF7F0]/70">Логика ценности и дохода</p><div class="mt-auto flex w-full items-baseline justify-between gap-2"><p class="text-[17px] font-medium text-[#C49538]" style="font-family:'DM Sans',system-ui,sans-serif;">Принцип 9</p><p class="text-[0.625rem] sm:text-[0.9375rem] md:text-4xl font-light leading-none text-[#C49538]" style="font-family:'DM Sans',system-ui,sans-serif;">8</p></div></div>
+
+              </div>
+            </div>
+          </div>
+
+          <div class="lg:order-2">
+            <div class="mb-8 flex items-center gap-3">
+              <p class="uppercase text-[14px] leading-[15px] font-medium text-[#C49538] tracking-[0.26em]" style="font-family:'DM Sans',system-ui,sans-serif;">Структура государства</p>
+            </div>
+            <h2 class="mt-8 text-5xl font-normal leading-[1.02] tracking-tight text-[#FAF7F0] sm:text-6xl lg:text-7xl" style="font-family:'Cormorant Garamond',Georgia,serif;">
+              Девять местностей,<br>
+              Восемь направлений,<br>
+              Шесть управляющих
+            </h2>
+            <p class="mt-8 max-w-2xl text-lg leading-8 text-[#FAF7F0]/82">
+              Восемь направлений управляются шестью управляющими и
+              координируют четыре предела времён года. На их пересечении
+              рождаются тридцать два дела, которые удерживаются под
+              контролем каждый день.
+            </p>
+            <p class="mt-5 max-w-xl text-base leading-7 text-[#FAF7F0]/60">
+              32 дела × 360 дней года = 11 520 дел — это и есть все дела
+              Поднебесной.
+            </p>
+            <div class="mt-8 grid max-w-xl grid-cols-3 gap-3">
+              <div class="rounded-2xl border border-[#C49538]/25 bg-white/[0.04] p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)]">
+                <p class="text-3xl font-light leading-none text-[#C49538]" style="font-family:'DM Sans',system-ui,sans-serif;">9</p>
+                <p class="mt-3 text-sm leading-5 text-[#FAF7F0]/70">местностей</p>
+              </div>
+              <div class="rounded-2xl border border-[#2DD4BF]/25 bg-white/[0.04] p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)]">
+                <p class="text-3xl font-light leading-none text-[#2DD4BF]" style="font-family:'DM Sans',system-ui,sans-serif;">8</p>
+                <p class="mt-3 text-sm leading-5 text-[#FAF7F0]/70">направлений</p>
+              </div>
+              <div class="rounded-2xl border border-[#F87171]/25 bg-white/[0.04] p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)]">
+                <p class="text-3xl font-light leading-none text-[#F87171]" style="font-family:'DM Sans',system-ui,sans-serif;">6</p>
+                <p class="mt-3 text-sm leading-5 text-[#FAF7F0]/70">управляющих</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
       <!-- LIBRARY SECTION -->
       <section id="library" class="relative bg-[#F4F0E6] px-5 py-24 sm:px-8 lg:px-10">
         <div class="relative mx-auto max-w-[88rem]">
@@ -308,7 +424,7 @@ import '../styles/global.css';
               Библиотека корпуса
             </p>
             <h2 id="sources" class="mt-6 text-5xl font-normal leading-[1.02] tracking-tight text-[#0A1F15] sm:text-6xl lg:text-7xl" style="font-family:'Cormorant Garamond',Georgia,serif;">
-              23 источника в шести категориях
+              <span id="librarySourceCount">23 источника</span> в шести категориях
             </h2>
             <p class="mt-7 max-w-3xl text-lg leading-8 text-[#0A1F15]/66">
               Найдите текст по категории, эпохе, русскому названию или
@@ -360,7 +476,7 @@ import '../styles/global.css';
         <div class="absolute inset-0 z-[2] pointer-events-none opacity-50" style="background: radial-gradient(ellipse 70% 60% at 50% 42%, rgba(5,18,10,0.52) 0%, transparent 100%);"></div>
 
         <div class="relative z-10 mx-auto flex max-w-3xl flex-col items-center text-center">
-          <p class="text-[10px] font-semibold uppercase tracking-[0.28em] text-[#C49538] sm:text-[11px]" style="font-family:'DM Sans',system-ui,sans-serif;">
+          <p class="text-[10px] font-semibold uppercase tracking-[0.28em] text-[#E8C878] drop-shadow-[0_1px_6px_rgba(0,0,0,0.65)] sm:text-[11px]" style="font-family:'DM Sans',system-ui,sans-serif;">
             Вступление в союз исследователей
           </p>
 
@@ -387,38 +503,22 @@ import '../styles/global.css';
                 Войти в библиотеку
                 <iconify-icon icon="solar:arrow-right-linear" stroke-width="1.5" class="text-xl transition group-hover:translate-x-0.5"></iconify-icon>
               </a>
-              <p class="mt-2 text-[11px] text-[#F4F0E6]/40">читать 23 источника</p>
+              <p class="mt-2 text-[11px] text-[#F4F0E6]/70">читать <span id="ctaSourceCount">23 источника</span></p>
             </div>
 
             <div class="flex w-full flex-col items-center sm:w-auto">
-              <a href="/introduction/" class="group flex h-14 w-full items-center justify-center gap-3 rounded-xl border border-[#C49538]/60 bg-white/[0.06] px-8 text-sm font-medium text-[#F4F0E6] backdrop-blur-sm transition hover:-translate-y-0.5 hover:border-[#C49538] hover:bg-white/[0.10] sm:w-auto">
-                Читать трактаты
+              <a href="https://pathofstrategy.com/community/" target="_blank" rel="noopener noreferrer" class="group flex h-14 w-full items-center justify-center gap-3 rounded-xl border border-[#C49538]/60 bg-white/[0.06] px-8 text-sm font-medium text-[#F4F0E6] backdrop-blur-sm transition hover:-translate-y-0.5 hover:border-[#C49538] hover:bg-white/[0.10] sm:w-auto">
+                Войти в ворота
               </a>
-              <p class="mt-2 text-[11px] text-[#F4F0E6]/40">присоединиться к чтению</p>
+              <p class="mt-2 text-[11px] text-[#F4F0E6]/70">присоединиться к обсуждению</p>
             </div>
           </div>
 
-          <p class="mt-8 max-w-md text-sm leading-7 text-[#F4F0E6]/40" style="font-family:'Source Serif 4',Georgia,serif;">
+          <p class="mt-8 max-w-md text-sm leading-7 text-[#F4F0E6]/80 drop-shadow-[0_1px_6px_rgba(0,0,0,0.55)]" style="font-family:'Source Serif 4',Georgia,serif;">
             «Ворота» — вступление в союз тех, кто исследует и переводит системы
             знаний древнего Китая.
           </p>
 
-          <div class="mt-10 flex items-center gap-4">
-            <div class="flex -space-x-2.5">
-              <div class="flex h-9 w-9 items-center justify-center rounded-full border-2 border-[#0A1F15]/60 bg-[#08C8A8]/80 text-xs font-semibold text-[#0A1F15]" style="font-family:'DM Sans',system-ui,sans-serif;">
-                А
-              </div>
-              <div class="flex h-9 w-9 items-center justify-center rounded-full border-2 border-[#0A1F15]/60 bg-[#C49538]/80 text-xs font-semibold text-[#0A1F15]" style="font-family:'DM Sans',system-ui,sans-serif;">
-                М
-              </div>
-              <div class="flex h-9 w-9 items-center justify-center rounded-full border-2 border-[#0A1F15]/60 bg-[#2D8B5E]/80 text-xs font-semibold text-[#F4F0E6]" style="font-family:'DM Sans',system-ui,sans-serif;">
-                К
-              </div>
-            </div>
-            <p class="text-sm text-[#F4F0E6]/60" style="font-family:'DM Sans',system-ui,sans-serif;">
-              <span class="font-semibold text-[#C49538]">142</span> исследователя уже внутри
-            </p>
-          </div>
         </div>
       </section>
 
@@ -429,10 +529,8 @@ import '../styles/global.css';
             <div class="flex flex-col gap-6">
               <a href="#hero" class="flex items-center gap-4">
                 <iconify-icon icon="mdi:yin-yang" class="text-[52px] text-white"></iconify-icon>
-                <span class="text-[28px] font-normal tracking-tight text-white leading-[1.1]" style="font-family:'Cormorant Garamond',Georgia,serif;">
-                  Путь
-                  <br>
-                  стратегии
+                <span class="text-[2.5rem] font-normal tracking-tight text-white leading-none whitespace-nowrap" style="font-family:'Kashima','DS China','Cormorant Garamond',Georgia,serif;">
+                  Путь стратегии
                 </span>
               </a>
               <p class="max-w-[290px] text-[15px] leading-[1.6] text-[#D1D1D1]" style="font-family: 'Source Serif 4', Georgia, serif;">
@@ -513,7 +611,7 @@ import '../styles/global.css';
 
           <div class="pt-8 pb-12 relative z-10 flex flex-col items-center text-center font-serif text-[#D1D1D1]" style="font-family: 'Source Serif 4', Georgia, serif;">
             <h3 class="text-[15px] font-bold text-[#C49538] uppercase tracking-wider mb-6">
-              23 ИСТОЧНИКА
+              24 ИСТОЧНИКА
             </h3>
             <div class="text-[15px] leading-[2.2] max-w-5xl mx-auto inline-block text-center">
               <a href="/texts/sunzi/" class="underline underline-offset-[5px] decoration-white/30 hover:decoration-white transition inline-block">Сунь-цзы</a>
@@ -524,43 +622,45 @@ import '../styles/global.css';
               <span class="mx-1.5 text-[#C49538]/80">·</span>
               <a href="/texts/sem-iskusstv/" class="underline underline-offset-[5px] decoration-white/30 hover:decoration-white transition inline-block">Правление от Основы</a>
               <span class="mx-1.5 text-[#C49538]/80">·</span>
-              <a href="#library" class="underline underline-offset-[5px] decoration-white/30 hover:decoration-white transition inline-block">Три Стратегии</a>
+              <a href="/texts/tri-strategii/" class="underline underline-offset-[5px] decoration-white/30 hover:decoration-white transition inline-block">Три Стратегии</a>
               <span class="mx-1.5 text-[#C49538]/80">·</span>
-              <a href="#library" class="underline underline-offset-[5px] decoration-white/30 hover:decoration-white transition inline-block">36 стратагем</a>
+              <a href="/texts/36-stratagem/" class="underline underline-offset-[5px] decoration-white/30 hover:decoration-white transition inline-block">36 стратагем</a>
               <br class="hidden lg:block">
               <a href="/texts/liu-tao/" class="underline underline-offset-[5px] decoration-white/30 hover:decoration-white transition inline-block">Шесть оберток</a>
               <span class="mx-1.5 text-[#C49538]/80">·</span>
-              <a href="#library" class="underline underline-offset-[5px] decoration-white/30 hover:decoration-white transition inline-block">Книга Основ</a>
+              <a href="/texts/kniga-osnov/" class="underline underline-offset-[5px] decoration-white/30 hover:decoration-white transition inline-block">Книга Основ</a>
               <span class="mx-1.5 text-[#C49538]/80">·</span>
-              <a href="#library" class="underline underline-offset-[5px] decoration-white/30 hover:decoration-white transition inline-block">Иньфу-цзин</a>
+              <a href="/texts/infu-czin/" class="underline underline-offset-[5px] decoration-white/30 hover:decoration-white transition inline-block">Иньфу-цзин</a>
               <span class="mx-1.5 text-[#C49538]/80">·</span>
-              <a href="#library" class="underline underline-offset-[5px] decoration-white/30 hover:decoration-white transition inline-block">Чжоу И</a>
+              <a href="/texts/chzhou-i/" class="underline underline-offset-[5px] decoration-white/30 hover:decoration-white transition inline-block">Чжоу И</a>
               <span class="mx-1.5 text-[#C49538]/80">·</span>
-              <a href="#library" class="underline underline-offset-[5px] decoration-white/30 hover:decoration-white transition inline-block">Чжоу Ли</a>
+              <a href="/texts/chzhou-li/" class="underline underline-offset-[5px] decoration-white/30 hover:decoration-white transition inline-block">Чжоу Ли</a>
               <span class="mx-1.5 text-[#C49538]/80">·</span>
-              <a href="#library" class="underline underline-offset-[5px] decoration-white/30 hover:decoration-white transition inline-block">10 крыльев</a>
+              <a href="/texts/10-krylev/" class="underline underline-offset-[5px] decoration-white/30 hover:decoration-white transition inline-block">10 крыльев</a>
               <span class="mx-1.5 text-[#C49538]/80">·</span>
-              <a href="#library" class="underline underline-offset-[5px] decoration-white/30 hover:decoration-white transition inline-block">Пять явлений</a>
+              <a href="/texts/pyat-yavleniy/" class="underline underline-offset-[5px] decoration-white/30 hover:decoration-white transition inline-block">Пять явлений</a>
               <br class="hidden lg:block">
-              <a href="#library" class="underline underline-offset-[5px] decoration-white/30 hover:decoration-white transition inline-block">Рождение Дао</a>
+              <a href="/texts/rozhdenie-dao/" class="underline underline-offset-[5px] decoration-white/30 hover:decoration-white transition inline-block">Рождение Дао</a>
               <span class="mx-1.5 text-[#C49538]/80">·</span>
-              <a href="#library" class="underline underline-offset-[5px] decoration-white/30 hover:decoration-white transition inline-block">Обозначение Дао</a>
+              <a href="/texts/oboznachenie-dao/" class="underline underline-offset-[5px] decoration-white/30 hover:decoration-white transition inline-block">Обозначение Дао</a>
               <span class="mx-1.5 text-[#C49538]/80">·</span>
-              <a href="#library" class="underline underline-offset-[5px] decoration-white/30 hover:decoration-white transition inline-block">9 Императоров</a>
+              <a href="/texts/9-imperatorov/" class="underline underline-offset-[5px] decoration-white/30 hover:decoration-white transition inline-block">9 Императоров</a>
               <span class="mx-1.5 text-[#C49538]/80">·</span>
-              <a href="#library" class="underline underline-offset-[5px] decoration-white/30 hover:decoration-white transition inline-block">Нэй-цзин</a>
+              <a href="/texts/su-wen/" class="underline underline-offset-[5px] decoration-white/30 hover:decoration-white transition inline-block">Нэй-цзин</a>
               <span class="mx-1.5 text-[#C49538]/80">·</span>
-              <a href="#library" class="underline underline-offset-[5px] decoration-white/30 hover:decoration-white transition inline-block">Книга Песен</a>
+              <a href="/texts/kniga-pesen/" class="underline underline-offset-[5px] decoration-white/30 hover:decoration-white transition inline-block">Книга Песен</a>
               <span class="mx-1.5 text-[#C49538]/80">·</span>
-              <a href="#library" class="underline underline-offset-[5px] decoration-white/30 hover:decoration-white transition inline-block">Книга Преданий</a>
+              <a href="/texts/kniga-predaniy/" class="underline underline-offset-[5px] decoration-white/30 hover:decoration-white transition inline-block">Книга Преданий</a>
               <br class="hidden lg:block">
-              <a href="#library" class="underline underline-offset-[5px] decoration-white/30 hover:decoration-white transition inline-block">Знак Инь Ян</a>
+              <a href="/texts/znak-in-yan/" class="underline underline-offset-[5px] decoration-white/30 hover:decoration-white transition inline-block">Знак Инь Ян</a>
               <span class="mx-1.5 text-[#C49538]/80">·</span>
-              <a href="#library" class="underline underline-offset-[5px] decoration-white/30 hover:decoration-white transition inline-block">Компас Ло Пань</a>
+              <a href="/texts/kompas-lo-pan/" class="underline underline-offset-[5px] decoration-white/30 hover:decoration-white transition inline-block">Компас Ло Пань</a>
               <span class="mx-1.5 text-[#C49538]/80">·</span>
-              <a href="#library" class="underline underline-offset-[5px] decoration-white/30 hover:decoration-white transition inline-block">Форма Основа</a>
+              <a href="/texts/forma-osnova/" class="underline underline-offset-[5px] decoration-white/30 hover:decoration-white transition inline-block">Форма Основа</a>
               <span class="mx-1.5 text-[#C49538]/80">·</span>
-              <a href="#library" class="underline underline-offset-[5px] decoration-white/30 hover:decoration-white transition inline-block">Игра И (Го)</a>
+              <a href="/texts/igra-go/" class="underline underline-offset-[5px] decoration-white/30 hover:decoration-white transition inline-block">Игра Го</a>
+              <span class="mx-1.5 text-[#C49538]/80">·</span>
+              <a href="/texts/igra-i/" class="underline underline-offset-[5px] decoration-white/30 hover:decoration-white transition inline-block">Игра И</a>
             </div>
           </div>
         </div>
@@ -578,9 +678,9 @@ import '../styles/global.css';
           <div class="flex flex-col sm:flex-row items-center justify-between text-[#D1D1D1] text-[13px] py-4 px-5 sm:px-8 lg:px-14 xl:px-20 mx-auto max-w-[88rem]" style="font-family:'DM Sans',system-ui,sans-serif;">
             <p>© 2852 — 2025 Путь стратегии. Все права сонастроены.</p>
             <p class="mt-2 sm:mt-0 space-x-1">
-              <a href="#" class="underline underline-offset-4 decoration-white/30 hover:decoration-white transition">Политика конфиденциальности</a>
+              <a href="/privacy/" class="underline underline-offset-4 decoration-white/30 hover:decoration-white transition">Политика конфиденциальности</a>
               <span>·</span>
-              <a href="#" class="underline underline-offset-4 decoration-white/30 hover:decoration-white transition">Условия участия</a>
+              <a href="/terms/" class="underline underline-offset-4 decoration-white/30 hover:decoration-white transition">Условия участия</a>
             </p>
           </div>
         </div>
@@ -648,16 +748,57 @@ import '../styles/global.css';
         { id: 20, cat: 'symbols', title: 'Знак Инь Ян', han: '太極', epoch: 'Ранняя древность', position: 'Центр · 3', desc: 'Символ смены режимов: действие и удержание, раскрытие и сворачивание.', detail: 'Знак Инь Ян фиксирует режимность системы. Он не заменяет решётку 井, а показывает смену рабочих состояний внутри единого порядка.' },
         { id: 21, cat: 'symbols', title: 'Компас Ло Пань', han: '羅盤', epoch: 'Чжоу', position: 'Ориентация юг-вверх', desc: 'Инструмент ориентации, где направление становится частью управленческого чтения среды.', detail: 'Ло Пань важен как прибор фиксации направления и положения. В корпусе он поддерживает строгую ориентацию диаграмм: юг расположен вверху.' },
         { id: 22, cat: 'symbols', title: 'Форма Основа', han: '基本形', epoch: 'Ранняя древность', position: 'Решётка 井', desc: 'Базовая форма, через которую частные модели возвращаются к общей структуре.', detail: 'Форма Основа удерживает минимальную геометрию системы. Через неё разные источники читаются не отдельно, а как фрагменты одного устройства.' },
-        { id: 23, cat: 'symbols', title: 'Игра И / Го', han: '圍棋', epoch: 'Ранняя Чжоу', position: 'Решётка и окружение', desc: 'Практика территории, окружения, темпа и распределения влияния на поле.', detail: 'Игра И / Го является практикой чтения поля. Она показывает управленческий код через территорию, окружение, баланс времени и цену каждого хода.' }
+        { id: 23, cat: 'symbols', title: 'Игра Го', han: '圍棋', epoch: 'Ранняя Чжоу', position: 'Решётка и окружение', desc: 'Практика территории, окружения, темпа и распределения влияния на поле.', detail: 'Игра Го является практикой чтения поля. Она показывает управленческий код через территорию, окружение, баланс времени и цену каждого хода.' },
+        { id: 24, cat: 'symbols', title: 'Игра И', han: '弈', epoch: 'Ранняя Чжоу', position: 'Решётка и окружение', desc: 'Классическое название той же настольной традиции, акцент на расчёте хода и цене решения.', detail: 'Игра И — более раннее, литературное обозначение настольной практики. Внимание смещено с территории на сам расчёт: последовательность ходов, момент решения и его цену.' }
       ];
+
+      // Keep on-page source counts in sync with `sources` so they never go stale
+      function pluralizeSources(n) {
+        const mod10 = n % 10;
+        const mod100 = n % 100;
+        if (mod100 >= 11 && mod100 <= 14) return 'источников';
+        if (mod10 === 1) return 'источник';
+        if (mod10 >= 2 && mod10 <= 4) return 'источника';
+        return 'источников';
+      }
+      (function syncSourceCounts() {
+        const count = sources.length;
+        const word = pluralizeSources(count);
+        const setText = (id, text) => {
+          const el = document.getElementById(id);
+          if (el) el.textContent = text;
+        };
+        setText('metaSourceCount', `${count} ${word}`);
+        setText('librarySourceCount', `${count} ${word}`);
+        setText('ctaSourceCount', `${count} ${word}`);
+      })();
 
       // Maps from Source ID to Starlight Document URIs
       const docUrls = {
         1: '/texts/sunzi/',
         2: '/texts/wei-liao-zi/',
+        3: '/texts/tri-strategii/',
+        4: '/texts/36-stratagem/',
         5: '/texts/liu-tao/',
         6: '/texts/guy-guy-tszy/',
-        7: '/texts/sem-iskusstv/'
+        7: '/texts/sem-iskusstv/',
+        8: '/texts/kniga-osnov/',
+        9: '/texts/infu-czin/',
+        10: '/texts/chzhou-i/',
+        11: '/texts/10-krylev/',
+        12: '/texts/chzhou-li/',
+        13: '/texts/kniga-pesen/',
+        14: '/texts/kniga-predaniy/',
+        15: '/texts/pyat-yavleniy/',
+        16: '/texts/rozhdenie-dao/',
+        17: '/texts/oboznachenie-dao/',
+        18: '/texts/9-imperatorov/',
+        19: '/texts/su-wen/',
+        20: '/texts/znak-in-yan/',
+        21: '/texts/kompas-lo-pan/',
+        22: '/texts/forma-osnova/',
+        23: '/texts/igra-go/',
+        24: '/texts/igra-i/'
       };
 
       let activeCategory = 'all';
@@ -797,7 +938,7 @@ import '../styles/global.css';
             <p class="mt-6 text-base leading-7 text-[#0A1F15]/66">${source.desc}</p>
             <div class="mt-auto pt-6">
               <div class="flex items-center justify-between gap-4 rounded-xl border border-[#C49538]/20 bg-[#F4F0E6]/65 px-4 py-3">
-                <span class="text-xs font-medium text-[#0A1F15]/62" style="font-family:'DM Sans',system-ui,sans-serif;">${source.position}</span>
+                <span class="text-xs font-medium text-[#0A1F15]/62" style="font-family:'DM Sans',system-ui,sans-serif;">Перейти к книге</span>
                 <iconify-icon icon="solar:arrow-right-linear" stroke-width="1.5" class="text-xl transition group-hover:translate-x-1" style="color:${group.color};"></iconify-icon>
               </div>
             </div>
@@ -903,6 +1044,44 @@ import '../styles/global.css';
           header.classList.add('border-b', 'border-[#C49538]/20');
         }
       });
+
+      // Mobile header menu (hamburger toggle)
+      (function initMobileMenu() {
+        const button = document.getElementById('mobileMenuButton');
+        const menu = document.getElementById('mobileMenu');
+        const backdrop = document.getElementById('mobileMenuBackdrop');
+        const iconOpen = document.getElementById('mobileMenuIconOpen');
+        const iconClose = document.getElementById('mobileMenuIconClose');
+        if (!button || !menu || !backdrop) return;
+
+        const setMenuOpen = (open) => {
+          menu.classList.toggle('hidden', !open);
+          menu.classList.toggle('flex', open);
+          backdrop.classList.toggle('hidden', !open);
+          iconOpen.classList.toggle('hidden', open);
+          iconClose.classList.toggle('hidden', !open);
+          button.setAttribute('aria-expanded', String(open));
+          document.body.classList.toggle('overflow-hidden', open);
+        };
+
+        button.addEventListener('click', () => {
+          setMenuOpen(menu.classList.contains('hidden'));
+        });
+        backdrop.addEventListener('click', () => setMenuOpen(false));
+        menu.querySelectorAll('a').forEach((link) => {
+          link.addEventListener('click', () => setMenuOpen(false));
+        });
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape' && !menu.classList.contains('hidden')) {
+            setMenuOpen(false);
+          }
+        });
+        window.addEventListener('resize', () => {
+          if (window.innerWidth >= 768 && !menu.classList.contains('hidden')) {
+            setMenuOpen(false);
+          }
+        });
+      })();
 
       renderAll();
     </script>

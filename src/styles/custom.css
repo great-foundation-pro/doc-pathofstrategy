@@ -73,6 +73,35 @@ h1#_top {
   font-family: 'Noto Serif SC', serif;
 }
 
+/* Custom Fonts for Logo (Chinese Calligraphy Style)
+   kashima-rus.ttf = Comforter Brush (Google Fonts, OFL 1.1), subset to Latin+Cyrillic
+   ds-china.ttf    = LXGW WenKai TC (Google Fonts, OFL 1.1), subset to Latin+Cyrillic
+   License text kept alongside in public/fonts/OFL-*.txt */
+@font-face {
+  font-family: 'Kashima';
+  src: url('/fonts/kashima-rus.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'DS China';
+  src: url('/fonts/ds-china.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Site Title styling */
+.site-title {
+  /* Change to 'DS China' to test the second variant */
+  font-family: 'Kashima', 'DS China', 'Cormorant Garamond', serif !important;
+  font-size: 1.8rem !important;
+  font-weight: normal !important;
+  letter-spacing: 1px;
+}
+
 /* Custom Starlight UI adjustments to match custom theme */
 .header {
   border-bottom: 1px solid rgba(196, 149, 56, 0.25) !important;
@@ -164,4 +193,9 @@ site-search button {
 .aside--caution, .aside--danger {
   border-left-color: #E03030 !important;
   background-color: rgba(224, 48, 48, 0.07) !important;
+}
+
+/* Скрыть пункт "RSS" в левом сайдбаре раздела "Заметки" (сама лента /blog/rss.xml остаётся доступной) */
+.top-level > li:has(> a[href$="/rss.xml"]) {
+  display: none;
 }
