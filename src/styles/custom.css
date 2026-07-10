@@ -1,0 +1,201 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=DM+Sans:ital,wght@0,100..900;1,100..900&family=Noto+Serif+SC:wght@200..900&family=Source+Serif+4:ital,opsz,wght@0,8..60;1,8..60&display=swap');
+
+/* Dark Mode overrides (default in Starlight) */
+:root {
+  --sl-font-sans: 'DM Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --sl-font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+  /* Brand Colors for Dark Mode */
+  --sl-color-accent: #C49538; /* Gold */
+  --sl-color-accent-high: #D4A84B; /* Light Gold */
+  --sl-color-accent-low: rgba(196, 149, 56, 0.15); /* Translucent Gold */
+  
+  --sl-color-black: #0A1F15; /* Deep Forest Green Background */
+  --sl-color-white: #F4F0E6; /* Warm Parchment Beige Text */
+  
+  --sl-color-gray-1: #F4F0E6;
+  --sl-color-gray-2: #D1D1D1;
+  --sl-color-gray-3: #a09070;
+  --sl-color-gray-4: rgba(244, 240, 230, 0.2);
+  --sl-color-gray-5: rgba(10, 31, 21, 0.8);
+  --sl-color-gray-6: #0A1F15;
+  
+  --sl-color-bg: #0A1F15;
+  --sl-color-bg-nav: #0A1F15;
+  --sl-color-bg-sidebar: #0A1F15;
+}
+
+/* Light Mode overrides */
+[data-theme="light"] {
+  /* Brand Colors for Light Mode */
+  --sl-color-accent: #2D8B5E; /* Green Accent */
+  --sl-color-accent-high: #123625; /* Dark Green */
+  --sl-color-accent-low: rgba(45, 139, 94, 0.1); /* Translucent Green */
+  
+  --sl-color-black: #F4F0E6; /* Warm Parchment Background */
+  --sl-color-white: #0A1F15; /* Deep Forest Green Text */
+  
+  --sl-color-gray-1: #0A1F15;
+  --sl-color-gray-2: #2A2A22;
+  --sl-color-gray-3: #6b5e4a;
+  --sl-color-gray-4: rgba(10, 31, 21, 0.2);
+  --sl-color-gray-5: rgba(196, 149, 56, 0.1);
+  --sl-color-gray-6: #F4F0E6;
+  
+  --sl-color-bg: #F4F0E6;
+  --sl-color-bg-nav: #F4F0E6;
+  --sl-color-bg-sidebar: #F4F0E6;
+}
+
+/* Apply Classic Serif Fonts for Content */
+.content h1, .content h2, .content h3, .content h4, .content h5, .content h6 {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+.content p, .content li, .content td, .content th, .content blockquote {
+  font-family: 'Source Serif 4', Georgia, serif;
+  line-height: 1.8;
+  font-size: 1.125rem;
+}
+
+/* Make page titles and main headers look extra premium */
+h1#_top {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 300;
+  font-size: 3rem;
+  color: var(--sl-color-accent);
+}
+
+/* Custom styles for Chinese text elements if they are present */
+[lang="zh"], .chinese-char {
+  font-family: 'Noto Serif SC', serif;
+}
+
+/* Custom Fonts for Logo (Chinese Calligraphy Style)
+   kashima-rus.ttf = Comforter Brush (Google Fonts, OFL 1.1), subset to Latin+Cyrillic
+   ds-china.ttf    = LXGW WenKai TC (Google Fonts, OFL 1.1), subset to Latin+Cyrillic
+   License text kept alongside in public/fonts/OFL-*.txt */
+@font-face {
+  font-family: 'Kashima';
+  src: url('/fonts/kashima-rus.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'DS China';
+  src: url('/fonts/ds-china.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Site Title styling */
+.site-title {
+  /* Change to 'DS China' to test the second variant */
+  font-family: 'Kashima', 'DS China', 'Cormorant Garamond', serif !important;
+  font-size: 1.8rem !important;
+  font-weight: normal !important;
+  letter-spacing: 1px;
+}
+
+/* Custom Starlight UI adjustments to match custom theme */
+.header {
+  border-bottom: 1px solid rgba(196, 149, 56, 0.25) !important;
+  background-color: var(--sl-color-bg-nav) !important;
+}
+
+.sidebar {
+  border-right: 1px solid rgba(196, 149, 56, 0.2) !important;
+  background-color: var(--sl-color-bg-sidebar) !important;
+}
+
+/* Sidebar navigation styling */
+.sidebar a {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.95rem;
+}
+
+.sidebar a[aria-current="page"] {
+  color: var(--sl-color-accent) !important;
+  background-color: var(--sl-color-accent-low) !important;
+  font-weight: 600;
+}
+
+/* Search bar customizations */
+site-search button {
+  border: 1px solid rgba(196, 149, 56, 0.3) !important;
+  background-color: rgba(255, 255, 255, 0.05) !important;
+}
+
+[data-theme="light"] site-search button {
+  background-color: rgba(255, 255, 255, 0.7) !important;
+}
+
+/* Content links */
+.content a:not(.sl-anchor-link) {
+  text-decoration-color: rgba(196, 149, 56, 0.4);
+  text-underline-offset: 4px;
+}
+
+.content a:not(.sl-anchor-link):hover {
+  color: var(--sl-color-accent);
+  text-decoration-color: var(--sl-color-accent);
+}
+
+/* Customize blockquotes to look like ancient scrolls/manuscripts */
+.content blockquote {
+  border-left: 3px solid var(--sl-color-accent);
+  padding-left: 1.25rem;
+  font-style: italic;
+  color: var(--sl-color-gray-2);
+  background-color: rgba(196, 149, 56, 0.05);
+  margin: 1.5rem 0;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+/* Table styling override */
+.content table {
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  width: 100%;
+}
+
+.content th {
+  border-bottom: 2px solid var(--sl-color-accent);
+  font-weight: 600;
+}
+
+.content td {
+  border-bottom: 1px solid rgba(196, 149, 56, 0.15);
+}
+
+/* Custom Aside (admonition) styles */
+.aside {
+  border-left-width: 4px !important;
+  border-radius: 8px;
+}
+
+.aside--note {
+  border-left-color: var(--sl-color-accent) !important;
+  background-color: rgba(196, 149, 56, 0.07) !important;
+}
+
+.aside--tip {
+  border-left-color: #2D8B5E !important;
+  background-color: rgba(45, 139, 94, 0.07) !important;
+}
+
+.aside--caution, .aside--danger {
+  border-left-color: #E03030 !important;
+  background-color: rgba(224, 48, 48, 0.07) !important;
+}
+
+/* Скрыть пункт "RSS" в левом сайдбаре раздела "Заметки" (сама лента /blog/rss.xml остаётся доступной) */
+.top-level > li:has(> a[href$="/rss.xml"]) {
+  display: none;
+}
