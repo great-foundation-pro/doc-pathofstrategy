@@ -8,15 +8,31 @@ import Default from '@astrojs/starlight/components/Head.astro';
 import { Schema } from 'astro-seo-schema';
 import { getEntry } from 'astro:content';
 
-const { entry, sidebar } = Astro.locals.starlightRoute;
+const { entry, sidebar, locale, entryMeta, id: routeId } = Astro.locals.starlightRoute;
 const ogImageUrl = new URL(`/open-graph/${entry.id}.png`, Astro.site);
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site).toString();
 
-// Ссылки в sidebar-конфиге заданы без завершающего слэша — приводим
-// к единому виду с остальными URL сайта (canonical, sitemap).
-function toAbsoluteUrl(href) {
-  const url = new URL(href, Astro.site).toString();
+// route.id всегда содержит префикс локали (в т.ч. на fallback-страницах —
+// непереведённых, где показывается контент из ru). entry.id для fallback
+// при этом остаётся БЕЗ префикса (это тот же объект, что и у ru-страницы),
+// поэтому для локали используем именно route.id, а не entry.id.
+const path = locale ? routeId.slice(locale.length + 1) : routeId;
+
+function withTrailingSlash(url) {
   return url.endsWith('/') ? url : `${url}/`;
+}
+
+// Для собственных захардкоженных путей ('/', '/introduction/', '/blog/') —
+// префикс локали нужно добавить самим, Starlight об этом не знает.
+function toAbsoluteUrl(href) {
+  const localizedHref = locale ? `/${locale}${href}` : href;
+  return withTrailingSlash(new URL(localizedHref, Astro.site).toString());
+}
+
+// Для ссылок, уже пришедших из sidebar (Astro.locals.starlightRoute.sidebar) —
+// Starlight сам подставляет туда префикс локали, повторно добавлять нельзя.
+function sidebarHrefToAbsoluteUrl(href) {
+  return withTrailingSlash(new URL(href, Astro.site).toString());
 }
 
 // --- Хлебные крошки ---
@@ -45,11 +61,12 @@ function findOverviewHref(entries) {
 
 const trail = findActiveTrail(sidebar) ?? [];
 
+// У лендинга теперь есть локализованная версия (src/pages/en/index.astro).
 const breadcrumbItems = [{ name: 'Главная', item: toAbsoluteUrl('/') }];
 
-if (entry.id.startsWith('texts/')) {
+if (path.startsWith('texts/')) {
   breadcrumbItems.push({ name: 'Библиотека', item: toAbsoluteUrl('/introduction/') });
-} else if (entry.id.startsWith('blog/')) {
+} else if (path.startsWith('blog/')) {
   // Посты блога не входят в дерево sidebar, поэтому родителя добавляем вручную.
   breadcrumbItems.push({ name: 'Заметки', item: toAbsoluteUrl('/blog/') });
 }
@@ -59,7 +76,7 @@ for (const node of trail) {
     const href = findOverviewHref(node.entries);
     breadcrumbItems.push({
       name: node.label,
-      item: href ? toAbsoluteUrl(href) : undefined,
+      item: href ? sidebarHrefToAbsoluteUrl(href) : undefined,
     });
   }
 }
@@ -82,10 +99,13 @@ const breadcrumbSchema = {
 const PUBLISHER = { '@type': 'Organization', name: 'Путь стратегии', url: 'https://doc.pathofstrategy.com' };
 
 let bookSchema;
-const idParts = entry.id.split('/');
+const idParts = path.split('/');
 if (idParts[0] === 'texts' && idParts.length >= 2) {
-  const bookId = `texts/${idParts[1]}`;
-  const bookUrl = toAbsoluteUrl(`/${bookId}/`);
+  const bookSlug = idParts[1];
+  const bookUrl = toAbsoluteUrl(`/texts/${bookSlug}/`);
+  // Для поиска в коллекции нужен полный id с префиксом локали
+  // (напр. 'en/texts/sunzi'), иначе на EN-странице подтянется книга из ru.
+  const bookContentId = locale ? `${locale}/texts/${bookSlug}` : `texts/${bookSlug}`;
 
   if (idParts.length === 2) {
     // Страница-обзор всего трактата.
@@ -95,22 +115,22 @@ if (idParts[0] === 'texts' && idParts.length >= 2) {
       name: entry.data.title,
       description: entry.data.description,
       url: canonicalUrl,
-      inLanguage: 'ru',
+      inLanguage: entryMeta.lang,
       publisher: PUBLISHER,
     };
   } else {
     // Отдельная глава — часть книги.
-    const bookEntry = await getEntry('docs', bookId);
+    const bookEntry = await getEntry('docs', bookContentId);
     bookSchema = {
       '@context': 'https://schema.org',
       '@type': 'Chapter',
       name: entry.data.title,
       description: entry.data.description,
       url: canonicalUrl,
-      inLanguage: 'ru',
+      inLanguage: entryMeta.lang,
       isPartOf: {
         '@type': 'Book',
-        name: bookEntry?.data.title ?? idParts[1],
+        name: bookEntry?.data.title ?? bookSlug,
         url: bookUrl,
       },
       publisher: PUBLISHER,

@@ -1,15 +1,31 @@
 ---
 // Добавляет иконку pathofstrategy.com первой в группу иконок шапки
 // Starlight (перед GitHub), поверх стандартного SocialIcons.
+// Иконки соцсетей (GitHub, RSS) рендерим сами вместо встроенного <Default />,
+// чтобы добавить target="_blank" — стандартный компонент Starlight его не ставит.
 import { Image } from 'astro:assets';
-import Default from '@astrojs/starlight/components/SocialIcons.astro';
+import { Icon } from '@astrojs/starlight/components';
+import config from 'virtual:starlight/user-config';
 import logo from '../assets/pathofstrategy-logo.png';
+
+const links = config.social || [];
 ---
 
 <a href="https://pathofstrategy.com/" target="_blank" rel="noopener noreferrer" class="sl-flex" aria-label="Путь стратегии">
 	<Image src={logo} alt="Путь стратегии" width={16} height={16} loading="eager" />
 </a>
-<Default><slot /></Default>
+{
+	links.length > 0 && (
+		<>
+			{links.map(({ label, href, icon }) => (
+				<a href={href} target="_blank" rel="me noopener noreferrer" class="sl-flex">
+					<span class="sr-only">{label}</span>
+					<Icon name={icon} />
+				</a>
+			))}
+		</>
+	)
+}
 
 <style>
 	@layer starlight.core {

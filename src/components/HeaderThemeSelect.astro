@@ -3,10 +3,14 @@
 // рядом со ссылкой "Заметки", которую туда встраивает starlight-blog.
 import Default from '@astrojs/starlight/components/ThemeSelect.astro';
 import StarlightBlogThemeSelect from 'starlight-blog/components/ThemeSelect.astro';
+
+const { locale } = Astro.locals.starlightRoute;
+const libraryHref = locale ? `/${locale}/introduction/` : '/introduction/';
+const libraryLabel = locale === 'en' ? 'Library' : 'Библиотека';
 ---
 
 <div class="sl-library-link">
-	<a href="/introduction/">Библиотека</a>
+	<a href={libraryHref}>{libraryLabel}</a>
 </div>
 
 <StarlightBlogThemeSelect><slot /></StarlightBlogThemeSelect>
