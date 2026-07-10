@@ -26,3 +26,12 @@
   --font-notoserif: "Noto Serif SC", serif;
   --font-sans: "DM Sans", system-ui, sans-serif;
 }
+
+/* astro-iconify рендерит иконки как голый <svg> без width/height —
+   без этого правила они растягиваются на весь доступный размер вместо
+   масштабирования по font-size (как раньше делал <iconify-icon>). */
+svg[astro-icon] {
+  width: 1em;
+  height: 1em;
+  flex-shrink: 0;
+}

@@ -9,12 +9,22 @@ import starlightBlog from 'starlight-blog';
 import starlightImageZoom from 'starlight-image-zoom';
 import starlightHeadingBadges from 'starlight-heading-badges';
 import starlightGiscus from 'starlight-giscus';
+import { unified } from '@astrojs/markdown-remark';
+import astroEmbed from 'astro-embed/integration';
 
 import partytown from '@astrojs/partytown';
 
 // https://starlight.astro.build/
 export default defineConfig({
   site: 'https://doc.pathofstrategy.com',
+
+  // Astro 7 переключил markdown-процессор по умолчанию на Sätteri, который
+  // пока не поддерживается плагином starlight-image-zoom. Возвращаем
+  // прежний процессор unified(), пока плагин не добавит поддержку:
+  // https://github.com/HiDeoo/starlight-image-zoom/issues/63
+  markdown: {
+    processor: unified(),
+  },
 
   integrations: [starlight({
     title: 'Путь Стратегии',
@@ -40,7 +50,16 @@ export default defineConfig({
         repoId: 'R_kgDOS0ltZw',
         category: 'General',
         categoryId: 'DIC_kwDOS0ltZ84DA0lJ',
-        theme: { light: 'gruvbox_light', dark: 'gruvbox_light', auto: 'gruvbox_light' },
+        // Кастомная чёрно-белая тема «Путь Стратегии» (public/giscus-theme.css).
+        // giscus.app сам делает fetch этого файла, поэтому путь обязан быть
+        // публичным URL — заработает после деплоя на doc.pathofstrategy.com.
+        // Локально (127.0.0.1) фактическая покраска не отобразится, т.к.
+        // giscus.app не может достучаться до localhost.
+        theme: {
+          light: 'https://doc.pathofstrategy.com/giscus-theme.css',
+          dark: 'https://doc.pathofstrategy.com/giscus-theme.css',
+          auto: 'https://doc.pathofstrategy.com/giscus-theme.css',
+        },
       }),
     ],
     customCss: [
@@ -50,6 +69,8 @@ export default defineConfig({
     components: {
       ThemeProvider: './src/components/ThemeProvider.astro',
       ThemeSelect: './src/components/HeaderThemeSelect.astro',
+      SocialIcons: './src/components/HeaderSocialIcons.astro',
+      Head: './src/components/Head.astro',
     },
     defaultLocale: 'root',
     locales: {
@@ -683,9 +704,9 @@ export default defineConfig({
       },
     ],
     social: [
-      { icon: 'github', label: 'GitHub', href: 'https://github.com/pathofstrategy' },
+      { icon: 'github', label: 'GitHub', href: 'https://github.com/great-foundation-pro/doc-pathofstrategy' },
     ],
-  }), mdx(), partytown()],
+  }), ...astroEmbed(), mdx(), partytown()],
 
   vite: {
     plugins: [tailwindcss()],

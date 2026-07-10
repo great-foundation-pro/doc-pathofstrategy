@@ -197,6 +197,8 @@
                           "document",
                           "add-document",
                           "setting",
+                          "link",
+                          "link-alt",
                           "external",
                           "download",
                           "cloud-download",

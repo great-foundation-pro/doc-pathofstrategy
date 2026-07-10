@@ -1,6 +1,7 @@
 ---
 // src/pages/privacy/index.astro — Политика конфиденциальности
 import '../../styles/global.css';
+import { Icon } from 'astro-iconify';
 ---
 
 <!DOCTYPE html>
@@ -15,7 +16,6 @@ import '../../styles/global.css';
     <link rel="apple-touch-icon" href="/icon-192.png" />
 
     <!-- External Scripts & Styles -->
-    <script src="/scripts/iconify-icon.min.js" is:inline></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=DM+Sans:ital,wght@0,100..900;1,100..900&family=Noto+Serif+SC:wght@200..900&family=Source+Serif+4:ital,opsz,wght@0,8..60;1,8..60&display=swap" />
@@ -27,7 +27,7 @@ import '../../styles/global.css';
     <header class="sticky top-0 z-50 border-b border-[#C49538]/20 bg-[#F4F0E6]/85 backdrop-blur-xl transition duration-300">
       <div class="mx-auto flex max-w-[88rem] h-20 items-center justify-between px-5 sm:px-8 lg:px-14 xl:px-20">
         <a href="/" class="flex items-center gap-3 group">
-          <iconify-icon icon="mdi:yin-yang" class="text-3xl text-[#0A1F15] transition-transform duration-700 group-hover:rotate-180"></iconify-icon>
+          <Icon name="mdi:yin-yang" class="text-3xl text-[#0A1F15] transition-transform duration-700 group-hover:rotate-180" />
           <span class="text-[2.5rem] font-normal tracking-tight text-[#0A1F15] leading-none" style="font-family:'Kashima','DS China','Cormorant Garamond',Georgia,serif;">
             Путь стратегии
           </span>
@@ -37,14 +37,14 @@ import '../../styles/global.css';
           <a href="/introduction/" class="hover:text-[#2D8B5E] transition">Библиотека</a>
           <a href="/blog/" class="hover:text-[#2D8B5E] transition">Заметки</a>
           <a href="https://github.com/great-foundation-pro/doc-pathofstrategy" target="_blank" rel="noopener noreferrer" class="flex items-center gap-1 hover:text-[#2D8B5E] transition" aria-label="GitHub">
-            <iconify-icon icon="mdi:github" class="text-lg"></iconify-icon>
-            <iconify-icon icon="mdi:open-in-new" class="text-xs"></iconify-icon>
+            <Icon name="mdi:github" class="text-lg" />
+            <Icon name="mdi:open-in-new" class="text-xs" />
           </a>
           <a href="https://pathofstrategy.com/" target="_blank" rel="noopener noreferrer" class="flex items-center hover:opacity-75 transition" aria-label="Путь стратегии">
             <img src="/images/pathofstrategy-logo.png" alt="Путь стратегии" class="h-5 w-5" />
           </a>
           <a href="https://doc.pathofstrategy.com/blog/rss.xml" class="flex items-center hover:text-[#2D8B5E] transition" aria-label="RSS">
-            <iconify-icon icon="mdi:rss" class="text-lg"></iconify-icon>
+            <Icon name="mdi:rss" class="text-lg" />
           </a>
           <a href="https://pathofstrategy.com/community/" target="_blank" rel="noopener noreferrer" class="flex h-10 items-center justify-center rounded-lg bg-[#0A1F15] px-4 text-xs font-semibold text-[#F4F0E6] hover:bg-[#123625] transition shadow-md">
             Войти в ворота
@@ -52,8 +52,8 @@ import '../../styles/global.css';
         </nav>
 
         <button id="mobileMenuButton" type="button" class="flex h-10 w-10 items-center justify-center rounded-lg text-[#0A1F15] transition hover:bg-black/5 md:hidden" aria-label="Открыть меню" aria-expanded="false" aria-controls="mobileMenu">
-          <iconify-icon id="mobileMenuIconOpen" icon="mdi:menu" class="text-2xl"></iconify-icon>
-          <iconify-icon id="mobileMenuIconClose" icon="mdi:close" class="hidden text-2xl"></iconify-icon>
+          <Icon id="mobileMenuIconOpen" name="mdi:menu" class="text-2xl" />
+          <Icon id="mobileMenuIconClose" name="mdi:close" class="hidden text-2xl" />
         </button>
       </div>
 
@@ -63,14 +63,14 @@ import '../../styles/global.css';
         <a href="/introduction/" class="rounded-lg px-3 py-3 text-base font-medium text-[#0A1F15]/80 transition hover:bg-[#2D8B5E]/10 hover:text-[#2D8B5E]">Библиотека</a>
         <a href="/blog/" class="rounded-lg px-3 py-3 text-base font-medium text-[#0A1F15]/80 transition hover:bg-[#2D8B5E]/10 hover:text-[#2D8B5E]">Заметки</a>
         <a href="https://github.com/great-foundation-pro/doc-pathofstrategy" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 rounded-lg px-3 py-3 text-base font-medium text-[#0A1F15]/80 transition hover:bg-[#2D8B5E]/10 hover:text-[#2D8B5E]">
-          <iconify-icon icon="mdi:github" class="text-lg"></iconify-icon> GitHub
-          <iconify-icon icon="mdi:open-in-new" class="text-xs"></iconify-icon>
+          <Icon name="mdi:github" class="text-lg" /> GitHub
+          <Icon name="mdi:open-in-new" class="text-xs" />
         </a>
         <a href="https://pathofstrategy.com/" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 rounded-lg px-3 py-3 text-base font-medium text-[#0A1F15]/80 transition hover:bg-[#2D8B5E]/10 hover:text-[#2D8B5E]">
           <img src="/images/pathofstrategy-logo.png" alt="" class="h-5 w-5" /> Путь стратегии
         </a>
         <a href="https://doc.pathofstrategy.com/blog/rss.xml" class="flex items-center gap-2 rounded-lg px-3 py-3 text-base font-medium text-[#0A1F15]/80 transition hover:bg-[#2D8B5E]/10 hover:text-[#2D8B5E]">
-          <iconify-icon icon="mdi:rss" class="text-lg"></iconify-icon> RSS
+          <Icon name="mdi:rss" class="text-lg" /> RSS
         </a>
         <a href="https://pathofstrategy.com/community/" target="_blank" rel="noopener noreferrer" class="mt-2 flex h-12 items-center justify-center rounded-lg bg-[#0A1F15] px-4 text-sm font-semibold text-[#F4F0E6] shadow-md transition hover:bg-[#123625]">
           Войти в ворота
