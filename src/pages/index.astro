@@ -67,7 +67,7 @@ import { Icon } from 'astro-iconify';
       <header class="fixed left-0 right-0 top-0 z-50 border-b border-[#C49538]/20 bg-[#F4F0E6]/85 backdrop-blur-xl transition duration-300">
         <div class="mx-auto flex max-w-[88rem] h-20 items-center justify-between px-5 sm:px-8 lg:px-14 xl:px-20">
           <a href="#hero" class="flex items-center gap-3 group">
-            <Icon name="mdi:yin-yang" class="text-3xl text-[#0A1F15] transition-transform duration-700 group-hover:rotate-180" />
+            <Icon name="mdi:yin-yang" class="text-3xl text-[#0A1F15] -scale-x-100 rotate-180 transition-transform duration-700 group-hover:rotate-0" />
             <span class="text-[2.5rem] font-normal tracking-tight text-[#0A1F15] leading-none" style="font-family:'Kashima','DS China','Cormorant Garamond',Georgia,serif;">
               Путь стратегии
             </span>
@@ -530,8 +530,8 @@ import { Icon } from 'astro-iconify';
         <div class="relative z-10 px-5 pt-16 pb-0 sm:px-8 lg:px-14 xl:px-20 mx-auto max-w-[88rem]">
           <div class="grid grid-cols-1 gap-14 lg:grid-cols-[1.4fr_1.05fr_1.05fr_1.5fr] lg:gap-10 xl:gap-12 pb-16">
             <div class="flex flex-col gap-6">
-              <a href="#hero" class="flex items-center gap-4">
-                <Icon name="mdi:yin-yang" class="text-[52px] text-white" />
+              <a href="#hero" class="flex items-center gap-4 group">
+                <Icon name="mdi:yin-yang" class="text-[52px] text-white -scale-x-100 transition-transform duration-700 group-hover:rotate-180" />
                 <span class="text-[2.5rem] font-normal tracking-tight text-white leading-none whitespace-nowrap" style="font-family:'Kashima','DS China','Cormorant Garamond',Georgia,serif;">
                   Путь стратегии
                 </span>
@@ -571,6 +571,11 @@ import { Icon } from 'astro-iconify';
                   <a href="https://pathofstrategy.com/pravila-soobshhestva/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-[#D1D1D1] underline underline-offset-[5px] decoration-white/30 hover:decoration-white transition">
                     Правила сообщества
                     <Icon name="mdi:open-in-new" class="text-xs" />
+                  </a>
+                </li>
+                <li>
+                  <a href="/license/" class="text-[#D1D1D1] underline underline-offset-[5px] decoration-white/30 hover:decoration-white transition">
+                    Лицензия
                   </a>
                 </li>
               </ul>
@@ -699,6 +704,8 @@ import { Icon } from 'astro-iconify';
               <a href="/privacy/" class="underline underline-offset-4 decoration-white/30 hover:decoration-white transition">Политика конфиденциальности</a>
               <span>·</span>
               <a href="/terms/" class="underline underline-offset-4 decoration-white/30 hover:decoration-white transition">Условия участия</a>
+              <span>·</span>
+              <a href="/license/" class="underline underline-offset-4 decoration-white/30 hover:decoration-white transition">Лицензия</a>
             </p>
           </div>
         </div>

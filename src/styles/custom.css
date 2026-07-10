@@ -102,8 +102,12 @@ h1#_top {
   letter-spacing: 1px;
 }
 
-/* Custom Starlight UI adjustments to match custom theme */
-.header {
+/* Custom Starlight UI adjustments to match custom theme.
+   Селектор нарочно уточнён до `header.header` (не просто `.header`) —
+   Starlight использует класс "header" дважды: на внешней панели <header>
+   и на внутренней <div> с лого/поиском внутри неё. Без уточнения граница
+   рисовалась на обоих сразу и давала две линии вместо одной. */
+header.header {
   border-bottom: 1px solid rgba(196, 149, 56, 0.25) !important;
   background-color: var(--sl-color-bg-nav) !important;
 }

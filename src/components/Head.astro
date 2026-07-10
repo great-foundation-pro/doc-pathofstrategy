@@ -1,13 +1,126 @@
 ---
-// Добавляет уникальную og:image/twitter:image для каждой страницы
-// документации, сгенерированную astro-og-canvas (src/pages/open-graph/).
+// Добавляет уникальную og:image для каждой страницы документации
+// (astro-og-canvas), а также структурированные данные Schema.org:
+// хлебные крошки (по дереву sidebar Starlight) и карточку книги/главы
+// (для страниц из коллекции texts/). twitter:card Starlight уже
+// проставляет сам в head.ts — свой дубль не добавляем.
 import Default from '@astrojs/starlight/components/Head.astro';
+import { Schema } from 'astro-seo-schema';
+import { getEntry } from 'astro:content';
 
-const { entry } = Astro.locals.starlightRoute;
+const { entry, sidebar } = Astro.locals.starlightRoute;
 const ogImageUrl = new URL(`/open-graph/${entry.id}.png`, Astro.site);
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site).toString();
+
+// Ссылки в sidebar-конфиге заданы без завершающего слэша — приводим
+// к единому виду с остальными URL сайта (canonical, sitemap).
+function toAbsoluteUrl(href) {
+  const url = new URL(href, Astro.site).toString();
+  return url.endsWith('/') ? url : `${url}/`;
+}
+
+// --- Хлебные крошки ---
+
+// Находит цепочку узлов sidebar (группы + текущая ссылка) до активной страницы.
+function findActiveTrail(entries, trail = []) {
+  for (const item of entries) {
+    if (item.type === 'link' && item.isCurrent) return [...trail, item];
+    if (item.type === 'group') {
+      const found = findActiveTrail(item.entries, [...trail, item]);
+      if (found) return found;
+    }
+  }
+  return null;
+}
+
+// В группах текстов первым пунктом всегда идёт ссылка «Обзор» — она же
+// представляет группу как кликабельную страницу в хлебных крошках. Если
+// такой ссылки нет (напр. группа «О проекте»), берём первую ссылку группы.
+function findOverviewHref(entries) {
+  const overview = entries.find((item) => item.type === 'link' && item.label === 'Обзор');
+  if (overview) return overview.href;
+  const firstLink = entries.find((item) => item.type === 'link');
+  return firstLink?.href;
+}
+
+const trail = findActiveTrail(sidebar) ?? [];
+
+const breadcrumbItems = [{ name: 'Главная', item: toAbsoluteUrl('/') }];
+
+if (entry.id.startsWith('texts/')) {
+  breadcrumbItems.push({ name: 'Библиотека', item: toAbsoluteUrl('/introduction/') });
+} else if (entry.id.startsWith('blog/')) {
+  // Посты блога не входят в дерево sidebar, поэтому родителя добавляем вручную.
+  breadcrumbItems.push({ name: 'Заметки', item: toAbsoluteUrl('/blog/') });
+}
+
+for (const node of trail) {
+  if (node.type === 'group') {
+    const href = findOverviewHref(node.entries);
+    breadcrumbItems.push({
+      name: node.label,
+      item: href ? toAbsoluteUrl(href) : undefined,
+    });
+  }
+}
+
+breadcrumbItems.push({ name: entry.data.title, item: canonicalUrl });
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: breadcrumbItems.map((crumb, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    name: crumb.name,
+    ...(crumb.item ? { item: crumb.item } : {}),
+  })),
+};
+
+// --- Карточка книги/главы (только для раздела /texts/) ---
+
+const PUBLISHER = { '@type': 'Organization', name: 'Путь стратегии', url: 'https://doc.pathofstrategy.com' };
+
+let bookSchema;
+const idParts = entry.id.split('/');
+if (idParts[0] === 'texts' && idParts.length >= 2) {
+  const bookId = `texts/${idParts[1]}`;
+  const bookUrl = toAbsoluteUrl(`/${bookId}/`);
+
+  if (idParts.length === 2) {
+    // Страница-обзор всего трактата.
+    bookSchema = {
+      '@context': 'https://schema.org',
+      '@type': 'Book',
+      name: entry.data.title,
+      description: entry.data.description,
+      url: canonicalUrl,
+      inLanguage: 'ru',
+      publisher: PUBLISHER,
+    };
+  } else {
+    // Отдельная глава — часть книги.
+    const bookEntry = await getEntry('docs', bookId);
+    bookSchema = {
+      '@context': 'https://schema.org',
+      '@type': 'Chapter',
+      name: entry.data.title,
+      description: entry.data.description,
+      url: canonicalUrl,
+      inLanguage: 'ru',
+      isPartOf: {
+        '@type': 'Book',
+        name: bookEntry?.data.title ?? idParts[1],
+        url: bookUrl,
+      },
+      publisher: PUBLISHER,
+    };
+  }
+}
 ---
 
 <Default><slot /></Default>
 <meta property="og:image" content={ogImageUrl} />
 <meta name="twitter:image" content={ogImageUrl} />
-<meta name="twitter:card" content="summary_large_image" />
+<Schema item={breadcrumbSchema} />
+{bookSchema && <Schema item={bookSchema} />}
