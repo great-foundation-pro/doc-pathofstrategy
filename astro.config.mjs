@@ -14,6 +14,38 @@ import astroEmbed from 'astro-embed/integration';
 
 import partytown from '@astrojs/partytown';
 
+// Локальная интеграция вместо ручного подключения компонента на каждой
+// странице: injectScript('head-inline', ...) вставляет скрипт в <head>
+// абсолютно всех страниц на этапе сборки — и Starlight-документации, и
+// самостоятельных .astro-страниц (лендинг, privacy/terms/license, 404),
+// у которых нет общего лейаута. Новый счётчик добавлять сюда же ещё
+// одним injectScript-вызовом — трогать страницы не придётся.
+// Ограничение: injectScript принимает только JS, поэтому <noscript>-пиксель
+// (fallback для отключённого JS) сюда не переносится — доля такого трафика
+// пренебрежимо мала, и сам Яндекс считает noscript-пиксель необязательным.
+function analyticsIntegration() {
+  return {
+    name: 'analytics',
+    hooks: {
+      'astro:config:setup': ({ injectScript }) => {
+        injectScript(
+          'head-inline',
+          `
+          (function(m,e,t,r,i,k,a){
+              m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+              m[i].l=1*new Date();
+              for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+              k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+          })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=110603764', 'ym');
+
+          ym(110603764, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+          `,
+        );
+      },
+    },
+  };
+}
+
 // https://starlight.astro.build/
 export default defineConfig({
   site: 'https://doc.pathofstrategy.com',
@@ -825,7 +857,7 @@ export default defineConfig({
     social: [
       { icon: 'github', label: 'GitHub', href: 'https://github.com/great-foundation-pro/doc-pathofstrategy' },
     ],
-  }), ...astroEmbed(), mdx(), partytown()],
+  }), ...astroEmbed(), mdx(), partytown(), analyticsIntegration()],
 
   vite: {
     plugins: [tailwindcss()],
