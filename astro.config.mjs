@@ -41,6 +41,23 @@ function analyticsIntegration() {
           ym(110603764, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
           `,
         );
+
+        // Rybbit — тем же способом: injectScript принимает только JS, поэтому
+        // тег <script src="..." data-site-id="..." defer> собирается через DOM
+        // и добавляется в <head>, но результат функционально идентичен
+        // указанному тегу (тот же src, атрибут data-site-id, defer).
+        injectScript(
+          'head-inline',
+          `
+          (function () {
+            var s = document.createElement('script');
+            s.src = 'https://analytics.pathofstrategy.com/api/script.js';
+            s.setAttribute('data-site-id', 'f74ec41ed82f');
+            s.defer = true;
+            document.head.appendChild(s);
+          })();
+          `,
+        );
       },
     },
   };
